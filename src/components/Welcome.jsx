@@ -29,7 +29,7 @@ function Welcome() {
               <Zap size={24} />
             </div>
             <div className="stat-info">
-              <span className="stat-value">2</span>
+              <span className="stat-value">1</span>
               <span className="stat-label">{t('welcome.years_exp')}</span>
             </div>
           </div>

@@ -11,19 +11,19 @@ function SkillsContent() {
   const categories = [
     {
       skills: [
-        { name: 'React', logo: 'https://svgl.app/library/react_dark.svg' },
-        { name: 'JavaScript', logo: 'https://svgl.app/library/javascript.svg' },
-        { name: 'TypeScript', logo: 'https://svgl.app/library/typescript.svg' },
-        { name: 'HTML5', logo: 'https://svgl.app/library/html5.svg' },
-        { name: 'CSS3', logo: 'https://svgl.app/library/css.svg' },
-        { name: 'Node.js', logo: 'https://svgl.app/library/nodejs.svg' },
-        { name: 'PostgreSQL', logo: 'https://svgl.app/library/postgresql.svg' },
-        { name: 'Python', logo: 'https://svgl.app/library/python.svg' },
-        { name: 'Git', logo: 'https://svgl.app/library/git.svg' },
-        { name: 'Docker', logo: 'https://svgl.app/library/docker.svg' },
-        { name: 'Vite', logo: 'https://svgl.app/library/vite.svg' },
-        { name: 'GitHub', logo: 'https://cdn.simpleicons.org/github/white', invertInLight: true },
-        { name: 'MySQL', logo: 'https://cdn.simpleicons.org/mysql/white', invertInLight: true }
+        { name: 'React', logo: '/src/svgs/react_light.svg' },
+        { name: 'JavaScript', logo: '/src/svgs/javascript.svg' },
+        { name: 'TypeScript', logo: '/src/svgs/typescript.svg' },
+        { name: 'HTML5', logo: '/src/svgs/html5.svg' },
+        { name: 'CSS3', logo: '/src/svgs/css.svg', invertInLight: true },
+        { name: 'Next.js', logo: '/src/svgs/nextjs_icon_dark.svg', invertInLight: true },
+        { name: 'PostgreSQL', logo: '/src/svgs/postgresql.svg', invertInLight: true },
+        { name: 'Python', logo: '/src/svgs/python.svg', invertInLight: true },
+        { name: 'Git', logo: '/src/svgs/git.svg', invertInLight: true },
+        { name: 'Docker', logo: '/src/svgs/docker.svg', invertInLight: true },
+        { name: 'Vite', logo: '/src/svgs/vite.svg' },
+        { name: 'GitHub', logo: '/src/svgs/github_dark.svg', invertInLight: true },
+        { name: 'MySQL', logo: '/src/svgs/mysql-icon-light.svg', invertInLight: true }
       ]
     }
   ];
