@@ -13,6 +13,9 @@ const techLogos = {
   'MySQL': '/mysql-icon-dark.svg',
 };
 
+function Projects() {
+  const { t } = useTranslation();
+
   const [projects] = useState([
     {
       key: 'Pokedex',
