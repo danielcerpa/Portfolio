@@ -15,7 +15,7 @@ function Welcome() {
           <h1 className="dev-name">Daniel Villanueva</h1>
           <h2 className="dev-title">{t('welcome.title')}</h2>
           <div className="badge-download-row">
-            <a href="public/CV_Villanueva_Cerpa_Daniel.pdf" download className="cv-download-btn">
+            <a href="/CV_Villanueva_Cerpa_Daniel.pdf" download className="cv-download-btn">
               <Download size={16} />
               <span>{t('welcome.download_cv')}</span>
             </a>
