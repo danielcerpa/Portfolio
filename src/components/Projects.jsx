@@ -3,27 +3,15 @@ import { Github, ExternalLink, Folder } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import './Projects.css';
 
-import reactDark from '../svgs/react_dark.svg';
-import viteSvg from '../svgs/vite.svg';
-import javascriptSvg from '../svgs/javascript.svg';
-import cssSvg from '../svgs/css.svg';
-import html5Svg from '../svgs/html5.svg';
-import typescriptSvg from '../svgs/typescript.svg';
-import mysqlDark from '../svgs/mysql-icon-dark.svg';
-
-function Projects() {
-  const { t } = useTranslation();
-
-  const techLogos = {
-    'React': reactDark,
-    'Vite': viteSvg,
-    'JavaScript': javascriptSvg,
-    'CSS': cssSvg,
-    'HTML5': html5Svg,
-    'CSS3': cssSvg,
-    'TypeScript': typescriptSvg,
-    'MySQL': mysqlDark,
-  };
+const techLogos = {
+  'React': '/react_dark.svg',
+  'Vite': '/vite.svg',
+  'JavaScript': '/javascript.svg',
+  'CSS': '/css.svg',
+  'HTML5': '/html5.svg',
+  'TypeScript': '/typescript.svg',
+  'MySQL': '/mysql-icon-dark.svg',
+};
 
   const [projects] = useState([
     {

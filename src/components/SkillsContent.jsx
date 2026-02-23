@@ -11,19 +11,19 @@ function SkillsContent() {
   const categories = [
     {
       skills: [
-        { name: 'React', logo: '/src/svgs/react_light.svg' },
-        { name: 'JavaScript', logo: '/src/svgs/javascript.svg' },
-        { name: 'TypeScript', logo: '/src/svgs/typescript.svg' },
-        { name: 'HTML5', logo: '/src/svgs/html5.svg' },
-        { name: 'CSS3', logo: '/src/svgs/css.svg', invertInLight: true },
-        { name: 'Next.js', logo: '/src/svgs/nextjs_icon_dark.svg', invertInLight: true },
-        { name: 'PostgreSQL', logo: '/src/svgs/postgresql.svg', invertInLight: true },
-        { name: 'Python', logo: '/src/svgs/python.svg', invertInLight: true },
-        { name: 'Git', logo: '/src/svgs/git.svg', invertInLight: true },
-        { name: 'Docker', logo: '/src/svgs/docker.svg', invertInLight: true },
-        { name: 'Vite', logo: '/src/svgs/vite.svg' },
-        { name: 'GitHub', logo: '/src/svgs/github_dark.svg', invertInLight: true },
-        { name: 'MySQL', logo: '/src/svgs/mysql-icon-light.svg', invertInLight: true }
+        { name: 'React', logo: '/svgs/react_light.svg' },
+        { name: 'JavaScript', logo: '/svgs/javascript.svg' },
+        { name: 'TypeScript', logo: '/svgs/typescript.svg' },
+        { name: 'HTML5', logo: '/svgs/html5.svg' },
+        { name: 'CSS3', logo: '/svgs/css.svg', invertInLight: true },
+        { name: 'Next.js', logo: '/svgs/nextjs_icon_dark.svg', invertInLight: true },
+        { name: 'PostgreSQL', logo: '/svgs/postgresql.svg', invertInLight: true },
+        { name: 'Python', logo: '/svgs/python.svg', invertInLight: true },
+        { name: 'Git', logo: '/svgs/git.svg', invertInLight: true },
+        { name: 'Docker', logo: '/svgs/docker.svg', invertInLight: true },
+        { name: 'Vite', logo: '/svgs/vite.svg' },
+        { name: 'GitHub', logo: '/svgs/github_dark.svg', invertInLight: true },
+        { name: 'MySQL', logo: '/svgs/mysql-icon-light.svg', invertInLight: true }
       ]
     }
   ];
