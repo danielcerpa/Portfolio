@@ -11,19 +11,19 @@ function SkillsContent() {
   const categories = [
     {
       skills: [
-        { name: 'React', logo: '/svgs/react_light.svg' },
-        { name: 'JavaScript', logo: '/svgs/javascript.svg' },
-        { name: 'TypeScript', logo: '/svgs/typescript.svg' },
-        { name: 'HTML5', logo: '/svgs/html5.svg' },
-        { name: 'CSS3', logo: '/svgs/css.svg', invertInLight: true },
-        { name: 'Next.js', logo: '/svgs/nextjs_icon_dark.svg', invertInLight: true },
-        { name: 'PostgreSQL', logo: '/svgs/postgresql.svg', invertInLight: true },
-        { name: 'Python', logo: '/svgs/python.svg', invertInLight: true },
-        { name: 'Git', logo: '/svgs/git.svg', invertInLight: true },
-        { name: 'Docker', logo: '/svgs/docker.svg', invertInLight: true },
-        { name: 'Vite', logo: '/svgs/vite.svg' },
-        { name: 'GitHub', logo: '/svgs/github_dark.svg', invertInLight: true },
-        { name: 'MySQL', logo: '/svgs/mysql-icon-light.svg', invertInLight: true }
+        { name: 'React', logo: '/react_light.svg' },
+        { name: 'JavaScript', logo: '/javascript.svg' },
+        { name: 'TypeScript', logo: '/typescript.svg' },
+        { name: 'HTML5', logo: '/html5.svg' },
+        { name: 'CSS3', logo: '/css.svg', invertInLight: true },
+        { name: 'Next.js', logo: '/nextjs_icon_dark.svg', invertInLight: true },
+        { name: 'PostgreSQL', logo: '/postgresql.svg', invertInLight: true },
+        { name: 'Python', logo: '/python.svg', invertInLight: true },
+        { name: 'Git', logo: '/git.svg', invertInLight: true },
+        { name: 'Docker', logo: '/docker.svg', invertInLight: true },
+        { name: 'Vite', logo: '/vite.svg' },
+        { name: 'GitHub', logo: '/github_dark.svg', invertInLight: true },
+        { name: 'MySQL', logo: '/mysql-icon-light.svg', invertInLight: true }
       ]
     }
   ];
