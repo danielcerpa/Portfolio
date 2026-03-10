@@ -7,7 +7,7 @@ function Contact() {
   const { t } = useTranslation();
   const [email] = useState('dvillanuevacerpa@gmail.com');
   const [github] = useState('github.com/VillanuevaDaniel');
-  const [linkedin] = useState('linkedin.com/in/juanperez');
+  const [linkedin] = useState('linkedin.com/in/danielvillanuevacerpa');
   const [twitter] = useState('@danidev04');
 
   return (
