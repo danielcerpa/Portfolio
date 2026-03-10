@@ -11,7 +11,9 @@ function LanguageSwitcher() {
     <div className={`lang-switcher-wrapper ${isEN ? 'is-en' : 'is-es'}`} onClick={toggle} role="button">
       <span className="switch-label-ext es">ES</span>
       <div className="switch-toggle-base">
+        <span className="switch-label-int es">ES</span>
         <div className="switch-toggle-thumb"></div>
+        <span className="switch-label-int en">EN</span>
       </div>
       <span className="switch-label-ext en">EN</span>
     </div>

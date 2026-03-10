@@ -54,20 +54,51 @@
   transform: translateX(18px);
 }
 
-@media (max-width: 480px) {
-  .lang-switcher-wrapper {
-    gap: 0.5rem;
+.switch-label-int {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .switch-label-ext {
+    display: none;
   }
+  
+  .switch-label-int {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .is-es .switch-label-int.es,
+  .is-en .switch-label-int.en {
+    color: var(--bg-primary);
+    text-shadow: none;
+  }
+
   .switch-toggle-base {
-    width: 38px;
-    height: 22px;
+    width: 60px;
+    height: 28px;
+    justify-content: space-between;
+    padding: 0;
   }
+
   .switch-toggle-thumb {
-    width: 12px;
-    height: 12px;
+    position: absolute;
+    left: 4px;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
   }
+
   .is-en .switch-toggle-thumb {
-    transform: translateX(16px);
+    transform: translateX(28px);
   }
 }
 
