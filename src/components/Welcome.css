@@ -100,7 +100,7 @@
 .cv-download-btn:hover {
   border-color: var(--text-primary);
   transform: translate(-2px, -2px);
-  color: var(--accent-primary);
+  color: var(--accent-secondary);
   background-color: var(--bg-tertiary);
   box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
 }

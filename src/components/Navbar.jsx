@@ -50,7 +50,7 @@ function Navbar() {
     <nav className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <div className="navbar-inner">
         <button className="navbar-logo" onClick={() => scrollTo('home')}>
-          DV<span className="navbar-logo-dot">.</span>
+          DC
         </button>
 
         <ul className="navbar-links">

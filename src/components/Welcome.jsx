@@ -11,7 +11,7 @@ function Welcome() {
       <div className="welcome-content">
 
         <div className="intro-section">
-          <h1 className="dev-name">Daniel Villanueva</h1>
+          <h1 className="dev-name">Daniel Cerpa</h1>
           <h2 className="dev-title">{t('welcome.title')}</h2>
           <div className="badge-download-row">
             <a href="/CV_Villanueva_Cerpa_Daniel.pdf" download className="cv-download-btn">
@@ -27,7 +27,7 @@ function Welcome() {
               <Zap size={24} />
             </div>
             <div className="stat-info">
-              <span className="stat-value">3</span>
+              <span className="stat-value">2</span>
               <span className="stat-label">{t('welcome.years_exp')}</span>
             </div>
           </div>

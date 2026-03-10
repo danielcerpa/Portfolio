@@ -21,9 +21,9 @@
   --text-muted: var(--black-600);
   
   --accent-primary: #ff3333;
+  --accent-secondary: #00d600;
   --accent-primary-dim: rgba(255, 51, 51, 0.1);
-  --accent-secondary: var(--black-800);
-  --accent-secondary-dim: rgba(41, 41, 41, 0.05);
+  --accent-secondary-dim: rgba(0, 214, 0, 0.1);
   
   --border-subtle: var(--black-400);
   --border-strong: var(--black-600);
@@ -31,7 +31,7 @@
   --card-shadow: 8px 8px 0px var(--black-800);
   --card-shadow-hover: 12px 12px 0px var(--black-950);
 
-  --grid-color: rgba(26, 26, 26, 0.03);
+  --grid-color: rgba(26, 26, 26, 0.1);
   --track-bg: var(--black-400);
   --nav-bg: rgba(214, 214, 214, 0.5);
   

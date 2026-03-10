@@ -24,18 +24,19 @@ function Projects() {
       github: 'https://github.com/VillanuevaDaniel/Pokedex',
       link: 'https://pokedex-dvc.vercel.app/'
     },
-    {
-      key: 'SGTM',
-      tech: ['HTML5', 'CSS3', 'JavaScript', 'MySQL'],
-      github: 'https://github.com/VillanuevaDaniel',
-      link: '#'
+    /*
+      //key: 'SGTM',
+      //tech: ['HTML5', 'CSS3', 'JavaScript', 'MySQL'],
+      //github: 'https://github.com/VillanuevaDaniel',
+      //link: '#'
     },
-    {
-      key: 'portfolio',
-      tech: ['React', 'Vite', 'JavaScript'],
-      github: 'https://github.com/VillanuevaDaniel',
-      link: '#'
-    }
+    //{
+      //key: 'portfolio',
+      //tech: ['React', 'Vite', 'JavaScript'],
+      //github: 'https://github.com/VillanuevaDaniel',
+      //link: '#'
+    //}
+    */
   ]);
 
   return (
