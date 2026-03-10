@@ -33,25 +33,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root[data-theme='light'] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f4f4f5;
-  --bg-tertiary: #e4e4e7;
-  
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-muted: #a1a1aa;
-  
-  --accent-primary: #1db954; /* Verde Spotify para modo claro */
-  --accent-primary-dim: rgba(29, 185, 84, 0.12);
-  
-  --border-subtle: #e4e4e7;
-  --border-strong: #d4d4d8;
 
-  --grid-color: rgba(0, 0, 0, 0.05);
-  --track-bg: rgba(0, 0, 0, 0.05);
-  --nav-bg: rgba(255, 255, 255, 0.75);
-}
 
 * {
   margin: 0;

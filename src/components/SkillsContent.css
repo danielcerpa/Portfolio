@@ -145,13 +145,7 @@
   opacity: 1;
 }
 
-:root[data-theme='light'] .invert-in-light {
-  filter: grayscale(1) invert(0.9);
-}
 
-:root[data-theme='light'] .modern-skill-card:hover .invert-in-light {
-  filter: grayscale(0) invert(0.9);
-}
 
 @media (max-width: 768px) {
   .skills-section {

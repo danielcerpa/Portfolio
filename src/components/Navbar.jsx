@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
-import ThemeSwitcher from './ThemeSwitcher';
 import './Navbar.css';
 function Navbar() {
   const { t } = useTranslation();
@@ -69,7 +68,7 @@ function Navbar() {
         </ul>
 
         <div className="navbar-controls">
-          <ThemeSwitcher />
+
           <LanguageSwitcher />
         </div>
       </div>

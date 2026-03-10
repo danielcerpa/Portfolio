@@ -8,6 +8,7 @@ const techLogos = {
   'Vite': '/vite.svg',
   'JavaScript': '/javascript.svg',
   'CSS': '/css.svg',
+  'CSS3': '/css.svg',
   'HTML5': '/html5.svg',
   'TypeScript': '/typescript.svg',
   'MySQL': '/mysql-icon-dark.svg',
