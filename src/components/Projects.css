@@ -34,17 +34,20 @@
 .modern-project-card {
   background: var(--bg-secondary);
   padding: 2.5rem;
-  border: 1px solid var(--border-subtle);
+  border: 2px solid var(--border-subtle);
   border-radius: 12px;
   transition: var(--transition-smooth);
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: var(--card-shadow);
 }
 
 .modern-project-card:hover {
   border-color: var(--border-strong);
   background: var(--bg-tertiary);
+  box-shadow: var(--card-shadow-hover);
+  transform: translate(-4px, -4px);
 }
 
 .project-card-top {
@@ -55,7 +58,7 @@
 }
 
 .folder-icon {
-  color: var(--accent-primary);
+  color: var(--accent-secondary);
   opacity: 0.9;
 }
 

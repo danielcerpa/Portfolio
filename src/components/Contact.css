@@ -50,25 +50,45 @@
   gap: 1.5rem;
   padding: 1.5rem;
   background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
+  border: 2px solid var(--border-subtle);
   border-radius: 12px;
   text-decoration: none;
   transition: var(--transition-smooth);
   position: relative;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.modern-contact-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transition: width 0.3s ease;
 }
 
 .modern-contact-card:hover {
   background: var(--bg-tertiary);
   border-color: var(--border-strong);
+  box-shadow: var(--card-shadow-hover);
+  transform: translate(-4px, -4px);
+}
+
+.modern-contact-card:hover::after {
+  width: 100%;
 }
 
 .contact-icon {
-  color: var(--accent-primary);
+  color: var(--text-primary);
   transition: var(--transition-fast);
 }
 
 .modern-contact-card:hover .contact-icon {
   transform: scale(1.1);
+  color: var(--accent-primary);
 }
 
 .contact-details {

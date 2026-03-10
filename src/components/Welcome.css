@@ -1,13 +1,14 @@
 .welcome-wallpaper {
   width: 100%;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: transparent;
   position: relative;
   overflow: hidden;
-  padding: 5rem 0 2rem;
+  padding: 5rem 0 4rem;
 }
 
 .welcome-content {
@@ -16,12 +17,11 @@
   padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.5rem;
   position: relative;
   z-index: 1;
 }
 
-/* grid ya no se usa — layout en columna simple */
 .welcome-grid {
   display: none;
 }
@@ -41,9 +41,9 @@
 
 .dev-title {
   font-size: 1.25rem;
-  color: var(--text-secondary);
+  color: var(--accent-primary);
   margin: 1.5rem 0;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: -0.01em;
   max-width: 400px;
 }
@@ -59,15 +59,20 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  color: var(--accent-primary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: var(--accent-primary-dim);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--bg-tertiary);
   padding: 0.5rem 1rem;
-  border-radius: 12px;
-  width: fit-content;
-  border: 1px solid rgba(120, 251, 255, 0.2);
+  border-radius: 8px;
+  border: 1px solid var(--accent-primary-dim);
   transition: var(--transition-smooth);
+}
+
+.dev-badge:hover {
+  border-color: var(--accent-primary);
 }
 
 .cv-download-btn {
@@ -76,7 +81,7 @@
   gap: 0.6rem;
   padding: 0.75rem 1.5rem;
   border-radius: 10px;
-  border: 2px solid var(--text-muted);
+  border: 2px solid var(--border-strong);
   background: var(--bg-secondary);
   color: var(--text-primary);
   font-size: 0.9rem;
@@ -88,14 +93,16 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.6);
 }
 
 
 .cv-download-btn:hover {
-  border: 2px solid var(--accent-primary);
-  transform: translateY(-2px);
+  border-color: var(--text-primary);
+  transform: translate(-2px, -2px);
   color: var(--accent-primary);
-  background-color: var(--accent-primary-dim);
+  background-color: var(--bg-tertiary);
+  box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
 }
 
 .cv-download-btn:active {
@@ -106,7 +113,6 @@
   display: none;
 }
 
-/* Minimalist Quick Stats */
 .quick-stats {
   display: flex;
   flex-direction: row;
@@ -125,13 +131,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-primary);
-  transition: var(--transition-fast);
-}
-
-.stat-item:hover .stat-icon-wrapper {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 8px var(--accent-primary-dim));
+  color: var(--text-primary);
 }
 
 .stat-info {
@@ -155,7 +155,6 @@
   margin-top: 0.2rem;
 }
 
-/* Panel Derecho - Refined About Card */
 .right-panel {
   display: flex;
   flex-direction: column;
@@ -164,17 +163,19 @@
 
 .about-modern-card {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 3rem;
+  border: 2px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 2.5rem 2.5rem 2rem;
   position: relative;
   overflow: hidden;
   transition: var(--transition-smooth);
+  box-shadow: var(--card-shadow);
 }
 
 .about-modern-card:hover {
+  transform: translate(-4px, -4px);
   border-color: var(--border-strong);
-  background: var(--bg-tertiary);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .card-header {
@@ -186,7 +187,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  color: var(--accent-primary);
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -200,11 +201,11 @@
   color: var(--text-primary);
   line-height: 1.7;
   font-weight: 400;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2rem;
 }
 
 .highlight-blue {
-  color: var(--accent-primary);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -220,20 +221,27 @@
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem;
-  background: var(--bg-primary);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  transition: var(--transition-fast);
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-subtle);
+  border-radius: 16px;
+  transition: var(--transition-smooth);
+  box-shadow: var(--card-shadow);
 }
 
 .highlight-card:hover {
-  border-color: var(--accent-primary);
-  transform: translateY(-5px);
+  border-color: var(--border-strong);
+  transform: translate(-4px, -4px);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .highlight-icon {
   margin-bottom: 0.5rem;
   color: var(--accent-primary);
+  transition: var(--transition-fast);
+}
+
+.highlight-card:hover .highlight-icon {
+  transform: scale(1.1);
 }
 
 .highlight-info {
@@ -255,10 +263,9 @@
   color: var(--text-primary);
 }
 
-/* Scroll Indicator */
 .scroll-indicator {
   position: absolute;
-  bottom: 2.5rem;
+  top: calc(100vh - 4rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -268,6 +275,7 @@
   color: var(--text-muted);
   animation: scrollBounce 2s ease-in-out infinite;
   user-select: none;
+  z-index: 10;
 }
 
 .scroll-label {
@@ -286,7 +294,6 @@
   50% { transform: translateX(-50%) translateY(6px); opacity: 1; }
 }
 
-/* ─── Responsive: Tablet (≤1024px) ─── */
 @media (max-width: 1024px) {
   .welcome-grid {
     grid-template-columns: 1fr;
@@ -312,12 +319,11 @@
   }
 }
 
-/* ─── Responsive: Mobile (≤768px) ─── */
 @media (max-width: 768px) {
   .welcome-wallpaper {
     height: auto;
     min-height: 100vh;
-    padding: 5rem 0 3rem;
+    padding: 6rem 0 6rem;
   }
 
   .welcome-content {
@@ -372,7 +378,6 @@
   }
 }
 
-/* ─── Responsive: Small mobile (≤480px) ─── */
 @media (max-width: 480px) {
   .dev-name { font-size: 2.5rem; }
 

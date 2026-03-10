@@ -10,7 +10,6 @@ function Welcome() {
     <div className="welcome-wallpaper">
       <div className="welcome-content">
 
-        {/* Intro */}
         <div className="intro-section">
           <h1 className="dev-name">Daniel Villanueva</h1>
           <h2 className="dev-title">{t('welcome.title')}</h2>
@@ -22,14 +21,13 @@ function Welcome() {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="quick-stats">
           <div className="stat-item">
             <div className="stat-icon-wrapper blue">
               <Zap size={24} />
             </div>
             <div className="stat-info">
-              <span className="stat-value">1</span>
+              <span className="stat-value">3</span>
               <span className="stat-label">{t('welcome.years_exp')}</span>
             </div>
           </div>
@@ -47,13 +45,12 @@ function Welcome() {
               <Target size={24} />
             </div>
             <div className="stat-info">
-              <span className="stat-value">13</span>
+              <span className="stat-value">11</span>
               <span className="stat-label">{t('welcome.tech_stack')}</span>
             </div>
           </div>
         </div>
 
-        {/* About */}
         <div className="about-content">
           <h3 className="card-title">{t('welcome.about_title')}</h3>
           <div className="about-text">

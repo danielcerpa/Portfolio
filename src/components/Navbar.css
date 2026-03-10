@@ -5,14 +5,18 @@
   right: 0;
   z-index: 100;
   padding: 0.75rem 0;
-  transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  box-shadow: 0 2px 0px transparent, 0 4px 0px transparent;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar--scrolled {
   background: var(--nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 2px 0px var(--border-subtle), 0 4px 0px var(--black-950);
 }
 
 .navbar-inner {
@@ -44,7 +48,7 @@
 }
 
 .navbar-logo-dot {
-  color: var(--accent-primary);
+  color: var(--accent-secondary);
 }
 
 /* Links */
@@ -69,16 +73,15 @@
   color: var(--text-muted);
   padding: 0.45rem 0.85rem;
   border-radius: 8px;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .navbar-link:hover {
   color: var(--text-primary);
-  background: var(--track-bg);
 }
 
 .navbar-link--active {
-  color: var(--text-primary);
+  color: var(--accent-primary);
 }
 
 /* Active indicator dot */
@@ -91,6 +94,7 @@
   height: 4px;
   border-radius: 50%;
   background: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary-dim);
   animation: dotPop 0.25s ease-out forwards;
 }
 

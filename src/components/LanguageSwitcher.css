@@ -1,47 +1,77 @@
-/* src/components/LanguageSwitcher.css */
-.lang-btn {
-  display: inline-flex;
+.lang-switcher-wrapper {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
+  gap: 0.75rem;
   cursor: pointer;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-  outline: none;
-  color: var(--text-muted);
+  user-select: none;
+  padding: 0.5rem;
+  border-radius: 12px;
+  transition: var(--transition-fast);
 }
 
-.lang-btn:hover {
-  color: var(--text-primary);
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.06);
-}
-
-
-
-.lang-text {
-  font-family: var(--font-main);
-  font-size: 0.85rem;
+.switch-label-ext {
+  font-size: 0.75rem;
   font-weight: 800;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
   letter-spacing: 0.05em;
+}
+
+.is-es .switch-label-ext.es,
+.is-en .switch-label-ext.en {
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--accent-primary-dim);
+}
+
+.switch-toggle-base {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 0 3px;
+  transition: var(--transition-smooth);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.6);
+}
+
+.lang-switcher-wrapper:hover .switch-toggle-base {
+  border-color: var(--border-strong);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.8);
+}
+
+.switch-toggle-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-primary);
+  border-radius: 50%;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.lang-btn:active .lang-text {
-  transform: scale(0.85);
+.is-en .switch-toggle-thumb {
+  transform: translateX(18px);
 }
 
 @media (max-width: 480px) {
-  .lang-btn {
-    width: 34px;
-    height: 34px;
+  .lang-switcher-wrapper {
+    gap: 0.5rem;
   }
-  .lang-text {
-    font-size: 0.75rem;
+  .switch-toggle-base {
+    width: 38px;
+    height: 22px;
+  }
+  .switch-toggle-thumb {
+    width: 12px;
+    height: 12px;
+  }
+  .is-en .switch-toggle-thumb {
+    transform: translateX(16px);
   }
 }
+
+
+
+
+

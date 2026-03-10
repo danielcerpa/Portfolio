@@ -1,12 +1,12 @@
 {
   "welcome": {
-    "title": "FULLSTACK DEVELOPER",
+    "title": "FRONTEND DEVELOPER",
     "badge": "Frontend Specialist",
     "projects": "Proyectos",
     "years_exp": "Años Experiencia",
     "tech_stack": "Tecnologías",
     "about_title": "Sobre Mí",
-    "about_text_1": "Desarrollador fullstack enfocado en crear experiencias web modernas e intuitivas.",
+    "about_text_1": "Desarrollador Frontend enfocado en crear experiencias web modernas e intuitivas.",
     "about_text_2": "Me especializo en el ecosistema React, transformando diseños complejos en código limpio, mantenible y de alto rendimiento.",
     "focus": "ENFOQUE",
     "philosophy": "FILOSOFÍA",
