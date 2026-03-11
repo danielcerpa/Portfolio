@@ -38,8 +38,9 @@
   "contact": {
     "title": "Contact",
     "description": "Have a project in mind? I'd love to hear about it. I'm always open to new opportunities and collaborations.",
-    "footer": "© {{year}} Daniel Villanueva — {{role}}",
-    "role": "Systems Engineer"
+    "footer": "© {{year}} Daniel Cerpa — {{role}}",
+    "role": "Systems Engineer",
+    "built_with": "Built with React, Vite, Lucide & i18next"
   },
   "nav": {
     "home": "Home",

@@ -65,6 +65,7 @@ function Contact() {
       
       <div className="minimal-footer">
         <p>{t('contact.footer', { year: new Date().getFullYear(), role: t('contact.role') })}</p>
+        <p className="tech-credits">{t('contact.built_with')}</p>
       </div>
     </div>
   );
