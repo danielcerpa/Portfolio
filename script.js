@@ -277,36 +277,55 @@ function initSkillsHover() {
     requestAnimationFrame(tick);
   }
 
-  // Dragging logic (Mouse & Touch)
-  function onDragStart(e) {
+  // Separate Dragging logic for Mouse (PC) & Touch (Mobile)
+  let isTouchActive = false;
+
+  function onMouseDown(e) {
     isDragging = true;
-    isTouchDirectionDetermined = false;
-    isHorizontalDrag = false;
-    const touch = e.type.includes('touch') ? e.touches[0] : e;
-    startX = touch.clientX;
-    startY = touch.clientY;
+    startX = e.clientX;
     startOffset = currentOffset;
     wrapper.classList.add('is-dragging');
   }
 
-  function onDragMove(e) {
+  function onMouseMove(e) {
     if (!isDragging) return;
-    const touch = e.type.includes('touch') ? e.touches[0] : e;
-    const currentX = touch.clientX;
-    const currentY = touch.clientY;
+    const deltaX = e.clientX - startX;
+    currentOffset = wrapOffset(startOffset + deltaX);
+    updateTransform();
+  }
+
+  function onMouseUp() {
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.classList.remove('is-dragging');
+  }
+
+  function onTouchStart(e) {
+    if (!e.touches || e.touches.length === 0) return;
+    isTouchActive = true;
+    isDragging = false;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startOffset = currentOffset;
+  }
+
+  function onTouchMove(e) {
+    if (!isTouchActive || !e.touches || e.touches.length === 0) return;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
 
-    if (e.type.includes('touch') && !isTouchDirectionDetermined) {
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
-        isHorizontalDrag = true;
-        isTouchDirectionDetermined = true;
-      } else if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 5) {
-        isHorizontalDrag = false;
-        isTouchDirectionDetermined = true;
-        isDragging = false;
-        wrapper.classList.remove('is-dragging');
+    if (!isDragging) {
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 5) {
+        // Vertical swipe: allow native page scroll without interference
+        isTouchActive = false;
         return;
+      }
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+        // Horizontal swipe: activate carousel drag
+        isDragging = true;
+        wrapper.classList.add('is-dragging');
       } else {
         return;
       }
@@ -316,19 +335,22 @@ function initSkillsHover() {
     updateTransform();
   }
 
-  function onDragEnd() {
-    if (!isDragging) return;
-    isDragging = false;
-    wrapper.classList.remove('is-dragging');
+  function onTouchEnd() {
+    isTouchActive = false;
+    if (isDragging) {
+      isDragging = false;
+      wrapper.classList.remove('is-dragging');
+    }
   }
 
-  wrapper.addEventListener('mousedown', onDragStart);
-  window.addEventListener('mousemove', onDragMove);
-  window.addEventListener('mouseup', onDragEnd);
+  wrapper.addEventListener('mousedown', onMouseDown);
+  window.addEventListener('mousemove', onMouseMove);
+  window.addEventListener('mouseup', onMouseUp);
 
-  wrapper.addEventListener('touchstart', onDragStart, { passive: true });
-  window.addEventListener('touchmove', onDragMove, { passive: true });
-  window.addEventListener('touchend', onDragEnd);
+  wrapper.addEventListener('touchstart', onTouchStart, { passive: true });
+  window.addEventListener('touchmove', onTouchMove, { passive: true });
+  window.addEventListener('touchend', onTouchEnd);
+  window.addEventListener('touchcancel', onTouchEnd);
 
   // Hover tracker for highlightTech
   let mouseX = 0;

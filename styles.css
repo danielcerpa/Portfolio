@@ -67,7 +67,6 @@ body {
   margin: 0;
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
   width: 100%;
 }
 
@@ -79,7 +78,6 @@ body {
   background-size: 240px 240px;
   position: relative;
   z-index: 1;
-  overflow-x: hidden;
 }
 
 /* Layer 2: Radial Cursor Spotlight Container */
@@ -96,6 +94,7 @@ body {
 .bg-tapestry-rainbow {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
   opacity: 1;
   background: linear-gradient(120deg, 
     rgba(66, 133, 244, 1) 0%, 
@@ -1157,7 +1156,6 @@ p a:hover::after, .inline-link:hover::after {
     flex: 1;
     justify-content: space-between;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -1224,11 +1222,18 @@ p a:hover::after, .inline-link:hover::after {
   .contact-icon { width: 30px; height: 30px; }
   .contact-icon-img { width: 34px; height: 34px; }
   .minimal-footer { margin-top: 4rem; padding: 2.5rem 0; }
+
+  .projects-info-wrapper { min-height: 240px; }
+  .carousel-title { font-size: 1.7rem; min-height: 3.4rem; }
+  .carousel-desc { font-size: 1rem; min-height: 6.8rem; }
 }
 
 @media (max-width: 640px) {
   .projects-section-wrapper { padding: 4rem 1rem; }
   .projects-grid { grid-template-columns: 1fr; }
+  .projects-info-wrapper { min-height: 260px; }
+  .carousel-title { font-size: 1.55rem; min-height: 3.6rem; }
+  .carousel-desc { font-size: 0.95rem; min-height: 7.6rem; }
 }
 
 @media (max-width: 480px) {
@@ -1249,6 +1254,10 @@ p a:hover::after, .inline-link:hover::after {
   .modern-skill-card { padding: 0.25rem 0.4rem; }
   .skill-logo-wrapper { width: 70px; height: 70px; }
   .skill-logo { width: 40px; height: 40px; }
+
+  .projects-info-wrapper { min-height: 280px; }
+  .carousel-title { font-size: 1.4rem; min-height: 3.8rem; }
+  .carousel-desc { font-size: 0.9rem; min-height: 8.4rem; }
 
   .contact-section-wrapper { padding: 3rem 0; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
