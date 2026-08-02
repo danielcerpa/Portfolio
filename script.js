@@ -304,15 +304,6 @@ function initSkillsHover() {
   window.addEventListener('touchmove', onDragMove, { passive: true });
   window.addEventListener('touchend', onDragEnd);
 
-  // Trackpad / Mouse wheel horizontal scroll support
-  wrapper.addEventListener('wheel', (e) => {
-    const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
-    if (Math.abs(delta) > 4) {
-      currentOffset = wrapOffset(currentOffset - delta * 0.8);
-      updateTransform();
-    }
-  }, { passive: true });
-
   // Hover tracker for highlightTech
   let mouseX = 0;
   let mouseY = 0;
