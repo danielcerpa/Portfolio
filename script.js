@@ -30,11 +30,11 @@ const translations = {
       items: {
         Entomologia: {
           title: "Sistema de Entomología",
-          description: "Sistema para la gestión y estudio entomológico desarrollado mediante convenio de ITESI con la UG. Contiene una guia de uso con driverjs en cada uno de sus modulos"
+          description: "Aplicacion web para la gestión de insectos en colecciones científicas, con sistemas de préstamos, administración de colecciones y más.",
         },
         Soportes: {
           title: "Sistema de Soportes",
-          description: "Sistema desarrollado en JS Vanilla en MINIMAL CODE (startup) para gestionar soportes técnicos a diferentes empresas."
+          description: "Aplicacion web para la gestión de soportes técnicos de múltiples empresas."
         },
         portfolio: {
           title: "Portfolio",
@@ -79,11 +79,11 @@ const translations = {
       items: {
         Entomologia: {
           title: "Entomology System",
-          description: "Entomology management and research system developed through an agreement between ITESI and UG. It contains a usage guide with driverjs in each of its modules."
+          description: "Web application for the management of insects in scientific collections, with loan systems, collection management and more."
         },
         Soportes: {
           title: "Technical Support System",
-          description: "Vanilla JS system developed at MINIMAL CODE (startup) to manage technical support tickets for various companies."
+          description: "Web application for the management of technical support of multiple companies."
         },
         portfolio: {
           title: "Portfolio",
