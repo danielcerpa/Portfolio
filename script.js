@@ -136,7 +136,13 @@ function applyLanguage(lang) {
     const keyPath = el.getAttribute('data-i18n');
     const value = getNestedValue(t, keyPath);
     if (value !== undefined) {
-      if (el.classList.contains('carousel-desc') || el.classList.contains('carousel-title')) {
+      if (el.classList.contains('hero-title')) {
+        const words = value.split(' ');
+        el.innerHTML = words.map(word => {
+          const charSpans = word.split('').map(char => `<span class="hero-char" style="opacity: 1;">${char}</span>`).join('');
+          return `<span class="hero-word">${charSpans}</span>`;
+        }).join(' ');
+      } else if (el.classList.contains('carousel-desc') || el.classList.contains('carousel-title')) {
         el.setAttribute('data-full-text', value);
         if (el.closest('.project-info-slide.active')) {
           el.textContent = value;
@@ -482,32 +488,39 @@ function initAnimations() {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
       const text = heroTitle.textContent.trim();
-      heroTitle.textContent = '';
+      const words = text.split(' ');
+      heroTitle.innerHTML = words.map(word => {
+        const charSpans = word.split('').map(char => `<span class="hero-char" style="opacity: 0;">${char}</span>`).join('');
+        return `<span class="hero-word">${charSpans}</span>`;
+      }).join(' ');
       heroTitle.style.opacity = '1';
-      
+
+      const allChars = heroTitle.querySelectorAll('.hero-char');
       let i = 0;
       function type() {
-        if (i < text.length) {
-          heroTitle.textContent += text.charAt(i);
+        if (i < allChars.length) {
+          allChars[i].style.opacity = '1';
           i++;
-          setTimeout(type, 35); // 35ms per character
+          setTimeout(type, 30); // 30ms per character
         } else {
           // Play the rest of the animations once typing finishes
-          anime.timeline({loop: false})
-            .add({
-              targets: '.hero-brand',
-              opacity: [0, 1],
-              translateY: [-20, 0],
-              easing: "easeOutExpo",
-              duration: 800
-            })
-            .add({
-              targets: '.hero-actions',
-              opacity: [0, 1],
-              translateY: [20, 0],
-              easing: "easeOutExpo",
-              duration: 800
-            }, '-=400');
+          if (typeof anime !== 'undefined') {
+            anime.timeline({loop: false})
+              .add({
+                targets: '.hero-brand',
+                opacity: [0, 1],
+                translateY: [-20, 0],
+                easing: "easeOutExpo",
+                duration: 800
+              })
+              .add({
+                targets: '.hero-actions',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                easing: "easeOutExpo",
+                duration: 800
+              }, '-=400');
+          }
         }
       }
       // Small delay before typing starts
@@ -662,8 +675,12 @@ function initProjectsCarousel() {
     });
   }
 
+  let lastWindowWidth = window.innerWidth;
   window.addEventListener('resize', () => {
-    switchProject(currentProjectIndex);
+    if (window.innerWidth !== lastWindowWidth) {
+      lastWindowWidth = window.innerWidth;
+      switchProject(currentProjectIndex);
+    }
   });
 
   // Initial trigger & centering for first slide

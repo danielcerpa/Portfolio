@@ -471,6 +471,16 @@ p a:hover::after, .inline-link:hover::after {
   text-shadow: none; /* Override global h1 */
 }
 
+.hero-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero-char {
+  display: inline;
+  transition: opacity 0.04s ease;
+}
+
 .hero-actions {
   margin-top: 2rem;
 }
