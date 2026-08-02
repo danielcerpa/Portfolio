@@ -1011,7 +1011,7 @@ p a:hover::after, .inline-link:hover::after {
 
 /* CONTACT SECTION */
 .contact-section-wrapper {
-  padding: 6rem 0;
+  padding: 6rem 4vw;
   animation: fadeIn 1.2s ease-out forwards;
 }
 
@@ -1226,6 +1226,7 @@ p a:hover::after, .inline-link:hover::after {
   .skill-logo { width: 50px; height: 50px; }
 
   .contact-section-wrapper { padding: 4rem 0; }
+  .projects-section-wrapper { padding: 4rem 0; }
   .contact-grid { gap: 1rem; }
   .contact-description { font-size: 1rem; margin-bottom: 2.5rem; }
   .modern-contact-card { width: 62px; height: 62px; }
@@ -1239,7 +1240,7 @@ p a:hover::after, .inline-link:hover::after {
 }
 
 @media (max-width: 640px) {
-  .projects-section-wrapper { padding: 4rem 1rem; }
+  .projects-section-wrapper { padding: 4rem 0; }
   .projects-grid { grid-template-columns: 1fr; }
   .projects-info-wrapper { min-height: 260px; }
   .carousel-title { font-size: 1.55rem; min-height: 3.6rem; }
