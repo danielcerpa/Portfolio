@@ -57,6 +57,7 @@
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 body {
@@ -66,6 +67,8 @@ body {
   margin: 0;
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .app {
@@ -76,6 +79,7 @@ body {
   background-size: 240px 240px;
   position: relative;
   z-index: 1;
+  overflow-x: hidden;
 }
 
 /* Layer 2: Radial Cursor Spotlight Container */
@@ -733,7 +737,7 @@ p a:hover::after, .inline-link:hover::after {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  overflow: visible;
+  overflow: hidden;
   padding: 1.5rem 0;
 }
 
