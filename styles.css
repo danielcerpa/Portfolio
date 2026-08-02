@@ -335,6 +335,11 @@ p a:hover::after, .inline-link:hover::after {
   border-radius: 50%;
   background: var(--accent-primary);
   box-shadow: 0 0 8px var(--accent-primary-dim);
+  display: none;
+}
+
+.navbar-link--active .navbar-indicator {
+  display: block;
   animation: dotPop 0.25s ease-out forwards;
 }
 
@@ -617,6 +622,7 @@ p a:hover::after, .inline-link:hover::after {
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
+  touch-action: pan-y;
 }
 
 .carousel-wrapper:active,
@@ -732,11 +738,7 @@ p a:hover::after, .inline-link:hover::after {
 /* Edge-to-Edge Full Viewport Visual Slider */
 .projects-visual-slider {
   position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   overflow: hidden;
   padding: 1.5rem 0;
 }

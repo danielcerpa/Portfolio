@@ -175,7 +175,8 @@ function initNavbar() {
   const navLinks = document.querySelectorAll('.navbar-link');
   const sections = ['home', 'skills', 'projects', 'contact'];
 
-  const handleScroll = () => {
+  let isScrollTicking = false;
+  const updateNavbarOnScroll = () => {
     // Glassmorphism shadow on scroll
     if (window.scrollY > 20) {
       navbar?.classList.add('navbar--scrolled');
@@ -201,23 +202,22 @@ function initNavbar() {
 
     navLinks.forEach((link) => {
       const sectionId = link.getAttribute('data-section');
-      if (sectionId === currentSection) {
-        link.classList.add('navbar-link--active');
-        if (!link.querySelector('.navbar-indicator')) {
-          const indicator = document.createElement('span');
-          indicator.className = 'navbar-indicator';
-          link.appendChild(indicator);
-        }
-      } else {
-        link.classList.remove('navbar-link--active');
-        const indicator = link.querySelector('.navbar-indicator');
-        if (indicator) indicator.remove();
-      }
+      link.classList.toggle('navbar-link--active', sectionId === currentSection);
     });
   };
 
+  const handleScroll = () => {
+    if (!isScrollTicking) {
+      requestAnimationFrame(() => {
+        updateNavbarOnScroll();
+        isScrollTicking = false;
+      });
+      isScrollTicking = true;
+    }
+  };
+
   window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // Initial run
+  updateNavbarOnScroll(); // Initial run
 
   // Click scroll handler
   document.querySelectorAll('[data-scroll-to]').forEach((btn) => {
@@ -242,8 +242,11 @@ function initSkillsHover() {
   let currentOffset = 0;
   let isDragging = false;
   let startX = 0;
+  let startY = 0;
   let startOffset = 0;
   let isHovered = false;
+  let isTouchDirectionDetermined = false;
+  let isHorizontalDrag = false;
   const speed = 0.75; // auto-scroll speed (px per frame)
 
   const getSetWidth = () => track.scrollWidth / 3;
@@ -277,15 +280,38 @@ function initSkillsHover() {
   // Dragging logic (Mouse & Touch)
   function onDragStart(e) {
     isDragging = true;
-    startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    isTouchDirectionDetermined = false;
+    isHorizontalDrag = false;
+    const touch = e.type.includes('touch') ? e.touches[0] : e;
+    startX = touch.clientX;
+    startY = touch.clientY;
     startOffset = currentOffset;
     wrapper.classList.add('is-dragging');
   }
 
   function onDragMove(e) {
     if (!isDragging) return;
-    const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const touch = e.type.includes('touch') ? e.touches[0] : e;
+    const currentX = touch.clientX;
+    const currentY = touch.clientY;
     const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+
+    if (e.type.includes('touch') && !isTouchDirectionDetermined) {
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+        isHorizontalDrag = true;
+        isTouchDirectionDetermined = true;
+      } else if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 5) {
+        isHorizontalDrag = false;
+        isTouchDirectionDetermined = true;
+        isDragging = false;
+        wrapper.classList.remove('is-dragging');
+        return;
+      } else {
+        return;
+      }
+    }
+
     currentOffset = wrapOffset(startOffset + deltaX);
     updateTransform();
   }
@@ -544,14 +570,15 @@ function initProjectsCarousel() {
     const newIndex = (targetIndex + totalProjects) % totalProjects;
     currentProjectIndex = newIndex;
 
-    // Align active slide with the description text left edge
     const firstSlide = visualSlides[0];
     if (firstSlide) {
       const slideWidth = firstSlide.offsetWidth;
       const computedGap = parseFloat(window.getComputedStyle(visualTrack).gap) || 32;
       const infoWrapper = document.querySelector('.projects-info-wrapper');
-      const containerLeft = infoWrapper ? infoWrapper.getBoundingClientRect().left : 32;
-      const offset = containerLeft - (currentProjectIndex * (slideWidth + computedGap));
+      const sliderLeft = visualTrack.parentElement ? visualTrack.parentElement.getBoundingClientRect().left : 0;
+      const containerLeft = infoWrapper ? infoWrapper.getBoundingClientRect().left : sliderLeft;
+      const relativeLeft = containerLeft - sliderLeft;
+      const offset = relativeLeft - (currentProjectIndex * (slideWidth + computedGap));
       visualTrack.style.transform = `translateX(${offset}px)`;
     }
 
