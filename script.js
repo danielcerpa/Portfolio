@@ -42,6 +42,10 @@ const translations = {
         Soportes: {
           title: "Sistema de Soportes",
           description: "Aplicacion web para la gestión de soportes técnicos de múltiples empresas."
+        },
+        Lavanderia: {
+          title: "Gestor de Lavanderías SaaS",
+          description: "Plataforma SaaS para la administración integral de negocios de lavandería, control de pedidos en tiempo real, seguimiento de turnos, métricas financieras y gestión de clientes."
         }
       }
     },
@@ -94,6 +98,10 @@ const translations = {
         Soportes: {
           title: "Technical Support System",
           description: "Web application for the management of technical support of multiple companies."
+        },
+        Lavanderia: {
+          title: "Laundry Management SaaS",
+          description: "SaaS platform for comprehensive laundry business management, real-time order tracking, shift scheduling, financial metrics, and customer management."
         }
       }
     },
