@@ -23,6 +23,7 @@ const translations = {
     },
     skills: {
       static_prefix: "Trabajo con",
+      specialized_prefix: "Especializado en",
       default_hover: "estas herramientas"
     },
     projects: {
@@ -72,6 +73,7 @@ const translations = {
     },
     skills: {
       static_prefix: "Work with",
+      specialized_prefix: "Specialized in",
       default_hover: "these tools"
     },
     projects: {
@@ -156,8 +158,18 @@ function applyLanguage(lang) {
 
   // Update skill header
   const highlightEl = document.getElementById('highlightTech');
+  const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
   if (highlightEl) {
     highlightEl.textContent = currentHoveredSkill || t.skills.default_hover;
+  }
+  if (staticPrefixEl) {
+    if (currentHoveredSkill) {
+      const activeCard = document.querySelector(`.modern-skill-card[data-skill="${currentHoveredSkill}"]`);
+      const isSpec = activeCard?.getAttribute('data-specialized') === 'true';
+      staticPrefixEl.textContent = isSpec ? t.skills.specialized_prefix : t.skills.static_prefix;
+    } else {
+      staticPrefixEl.textContent = t.skills.static_prefix;
+    }
   }
 }
 
@@ -367,11 +379,23 @@ function initSkillsHover() {
     const element = document.elementFromPoint(mouseX, mouseY);
     const card = element?.closest('.modern-skill-card');
     const skillName = card?.getAttribute('data-skill') || null;
+    const isSpecialized = card?.getAttribute('data-specialized') === 'true';
+    const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
 
     if (skillName !== currentHoveredSkill) {
       currentHoveredSkill = skillName;
-      const defaultText = translations[currentLang].skills.default_hover;
-      highlightEl.textContent = skillName || defaultText;
+      const t = translations[currentLang].skills;
+      if (skillName) {
+        highlightEl.textContent = skillName;
+        if (staticPrefixEl) {
+          staticPrefixEl.textContent = isSpecialized ? (t.specialized_prefix || "Especializado en") : t.static_prefix;
+        }
+      } else {
+        highlightEl.textContent = t.default_hover;
+        if (staticPrefixEl) {
+          staticPrefixEl.textContent = t.static_prefix;
+        }
+      }
     }
   };
 
@@ -385,8 +409,12 @@ function initSkillsHover() {
   wrapper.addEventListener('mouseleave', () => {
     isHovered = false;
     currentHoveredSkill = null;
-    const defaultText = translations[currentLang].skills.default_hover;
-    highlightEl.textContent = defaultText;
+    const t = translations[currentLang].skills;
+    highlightEl.textContent = t.default_hover;
+    const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
+    if (staticPrefixEl) {
+      staticPrefixEl.textContent = t.static_prefix;
+    }
   });
 
   wrapper.addEventListener('mousemove', (e) => {

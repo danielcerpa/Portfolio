@@ -627,7 +627,8 @@ p a:hover::after, .inline-link:hover::after {
   width: 100%;
   overflow: hidden;
   position: relative;
-  padding: 1rem 0;
+  padding: 3rem 0;
+  margin: -1.5rem 0;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -673,7 +674,7 @@ p a:hover::after, .inline-link:hover::after {
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  padding: 0.5rem 1.25rem;
+  padding: 1.25rem 1.25rem;
   margin: 0;
   background: transparent;
   border: none;
@@ -711,6 +712,69 @@ p a:hover::after, .inline-link:hover::after {
 
 .modern-skill-card:hover .skill-logo-wrapper {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+/* SPECIALIZED SKILLS - GLOWING COLORFUL AURA SHADOWS */
+.modern-skill-card[data-specialized="true"] .skill-logo-wrapper {
+  position: relative;
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+/* 1. JavaScript: Yellow Glow Aura */
+.modern-skill-card[data-skill="JavaScript"] .skill-logo-wrapper {
+  box-shadow: 0 0 22px rgba(247, 223, 30, 0.75), 0 0 38px rgba(247, 223, 30, 0.4), 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation: aura-pulse-js 3s ease-in-out infinite alternate;
+}
+
+.modern-skill-card[data-skill="JavaScript"]:hover .skill-logo-wrapper {
+  box-shadow: 0 0 32px rgba(247, 223, 30, 0.95), 0 0 52px rgba(247, 223, 30, 0.6), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. Python: Blue & Yellow Dual Glow Aura */
+.modern-skill-card[data-skill="Python"] .skill-logo-wrapper {
+  box-shadow: -5px -5px 24px rgba(55, 118, 171, 0.85), 5px 5px 24px rgba(255, 212, 56, 0.75), 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation: aura-pulse-python 3s ease-in-out infinite alternate;
+}
+
+.modern-skill-card[data-skill="Python"]:hover .skill-logo-wrapper {
+  box-shadow: -8px -8px 34px rgba(55, 118, 171, 0.95), 8px 8px 34px rgba(255, 212, 56, 0.9), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. MySQL: Cyan & Deep Blue Glow Aura */
+.modern-skill-card[data-skill="MySQL"] .skill-logo-wrapper {
+  box-shadow: 0 0 24px rgba(0, 160, 214, 0.85), 0 0 40px rgba(0, 97, 138, 0.55), 0 4px 14px rgba(0, 0, 0, 0.2);
+  animation: aura-pulse-mysql 3s ease-in-out infinite alternate;
+}
+
+.modern-skill-card[data-skill="MySQL"]:hover .skill-logo-wrapper {
+  box-shadow: 0 0 36px rgba(0, 160, 214, 0.95), 0 0 58px rgba(0, 97, 138, 0.7), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes aura-pulse-js {
+  0% {
+    box-shadow: 0 0 16px rgba(247, 223, 30, 0.6), 0 0 28px rgba(247, 223, 30, 0.3), 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 26px rgba(247, 223, 30, 0.9), 0 0 44px rgba(247, 223, 30, 0.5), 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes aura-pulse-python {
+  0% {
+    box-shadow: -4px -4px 18px rgba(55, 118, 171, 0.7), 4px 4px 18px rgba(255, 212, 56, 0.6), 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: -7px -7px 28px rgba(55, 118, 171, 0.95), 7px 7px 28px rgba(255, 212, 56, 0.85), 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes aura-pulse-mysql {
+  0% {
+    box-shadow: 0 0 18px rgba(0, 160, 214, 0.7), 0 0 30px rgba(0, 97, 138, 0.45), 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 28px rgba(0, 160, 214, 0.95), 0 0 46px rgba(0, 97, 138, 0.65), 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* PROJECTS SECTION */
@@ -924,11 +988,12 @@ p a:hover::after, .inline-link:hover::after {
 @media (max-width: 600px) {
   .projects-bottom-bar {
     flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
   }
   .projects-carousel-controls {
-    align-self: flex-end;
+    align-self: center;
+    margin: 0 auto;
   }
 }
 
@@ -1115,7 +1180,7 @@ p a:hover::after, .inline-link:hover::after {
 
 .modern-contact-card:hover .contact-icon,
 .modern-contact-card:hover .contact-icon-img {
-  transform: scale(1.12);
+  transform: none;
 }
 
 .minimal-footer {
@@ -1224,7 +1289,7 @@ p a:hover::after, .inline-link:hover::after {
   .skills-header { margin-bottom: 2rem; min-height: 90px; }
   .skills-title { font-size: 2.5rem; min-height: 6rem; }
   .carousel-wrapper::before, .carousel-wrapper::after { width: 5rem; }
-  .modern-skill-card { padding: 0.35rem 0.6rem; }
+  .modern-skill-card { padding: 1rem 0.6rem; }
   .skill-logo-wrapper { width: 88px; height: 88px; }
   .skill-logo { width: 50px; height: 50px; }
 
@@ -1237,17 +1302,18 @@ p a:hover::after, .inline-link:hover::after {
   .contact-icon-img { width: 34px; height: 34px; }
   .minimal-footer { margin-top: 4rem; padding: 2.5rem 0; }
 
-  .projects-info-wrapper { min-height: 240px; }
-  .carousel-title { font-size: 1.7rem; min-height: 3.4rem; }
-  .carousel-desc { font-size: 1rem; min-height: 6.8rem; }
+  .projects-info-wrapper { min-height: 180px; }
+  .carousel-title { font-size: 1.7rem; min-height: 2.8rem; }
+  .carousel-desc { font-size: 1rem; min-height: 4rem; }
 }
 
 @media (max-width: 640px) {
   .projects-section-wrapper { padding: 4rem 0; }
   .projects-grid { grid-template-columns: 1fr; }
-  .projects-info-wrapper { min-height: 260px; }
-  .carousel-title { font-size: 1.55rem; min-height: 3.6rem; }
-  .carousel-desc { font-size: 0.95rem; min-height: 7.6rem; }
+  .projects-info-wrapper { min-height: 170px; }
+  .carousel-title { font-size: 1.55rem; min-height: 2.6rem; }
+  .carousel-desc { font-size: 0.95rem; min-height: 3.8rem; }
+  .carousel-tech-list { margin-top: 6px; }
 }
 
 @media (max-width: 480px) {
@@ -1265,13 +1331,14 @@ p a:hover::after, .inline-link:hover::after {
   .skills-title { font-size: 2rem; min-height: 7rem; }
   .highlight-tech { min-height: 2.4em; }
   .carousel-wrapper::before, .carousel-wrapper::after { width: 3rem; }
-  .modern-skill-card { padding: 0.25rem 0.4rem; }
+  .modern-skill-card { padding: 0.8rem 0.4rem; }
   .skill-logo-wrapper { width: 70px; height: 70px; }
   .skill-logo { width: 40px; height: 40px; }
 
-  .projects-info-wrapper { min-height: 280px; }
-  .carousel-title { font-size: 1.4rem; min-height: 3.8rem; }
-  .carousel-desc { font-size: 0.9rem; min-height: 8.4rem; }
+  .projects-info-wrapper { min-height: 160px; }
+  .carousel-title { font-size: 1.4rem; min-height: 2.4rem; }
+  .carousel-desc { font-size: 0.9rem; min-height: 3.6rem; }
+  .carousel-tech-list { margin-top: 4px; }
 
   .contact-section-wrapper { padding: 3rem 0; }
   .section-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
