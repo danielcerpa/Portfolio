@@ -3,18 +3,23 @@ const translations = {
   es: {
     nav: {
       home: "Inicio",
+      about: "Sobre Mí",
       skills: "Habilidades",
       projects: "Proyectos",
       contact: "Contacto"
     },
+
+    about:{
+      title: "Sobre Mí",
+      description: "<p>Soy un Ingeniero de Sistemas enfocado en el desarrollo web y el análisis de datos. Me gusta crear aplicaciones y soluciones efectivas que resuelvan problemas cotidianos en el mundo laboral.</p><p>Mis habilidades se centran en el desarrollo vanilla (<span class=\"tech-highlight tech-html\">HTML</span>, <span class=\"tech-highlight tech-css\">CSS</span>, <span class=\"tech-highlight tech-js\">JavaScript</span> y múltiples librerías) para lograr interfaces mas fluidas y responsivas que otras personas puedan comprender facilmente, complementándome con frameworks como <span class=\"tech-highlight tech-react\">React</span> y <span class=\"tech-highlight tech-next\">Next.js</span>.</p><p>Para el análisis de datos me gusta trabajar con <span class=\"tech-highlight tech-python\">Python</span> y su ecosistema de librerías como <span class=\"tech-highlight tech-pandas\">Pandas</span>, <span class=\"tech-highlight tech-numpy\">NumPy</span>, <span class=\"tech-highlight tech-matplotlib\">Matplotlib</span> y <span class=\"tech-highlight tech-duckdb\">DuckDB</span>. En bases de datos trabajo con <span class=\"tech-highlight tech-postgres\">PostgreSQL</span> y <span class=\"tech-highlight tech-mysql\">MySQL</span> (especializándome en este último).</p>"
+    },
     welcome: {
-      title: "FRONTEND DEVELOPER",
-      badge: "Frontend Specialist",
+      title: "FULLSTACK DEVELOPER",
+      badge: "Fullstack Specialist",
       projects: "Proyectos",
-      years_exp: "Años Experiencia",
       tech_stack: "Tecnologías",
       about_title: "Sobre Mí",
-      about_text_1: "Desarrollador enfocado en crear experiencias modernas e intuitivas.",
+      about_text_1: "Desarrollador Fullstack y Analista de Datos",
       focus: "ENFOQUE",
       philosophy: "FILOSOFÍA",
       objective: "OBJETIVO",
@@ -24,7 +29,8 @@ const translations = {
     skills: {
       static_prefix: "Trabajo con",
       specialized_prefix: "Especializado en",
-      default_hover: "estas herramientas"
+      default_hover: "estas herramientas",
+      disclaimer: "Pero siempre puedo adaptarme a nuevas tecnologías."
     },
     projects: {
       title: "Proyectos",
@@ -36,16 +42,12 @@ const translations = {
         Soportes: {
           title: "Sistema de Soportes",
           description: "Aplicacion web para la gestión de soportes técnicos de múltiples empresas."
-        },
-        portfolio: {
-          title: "Portfolio",
-          description: "Portfolio personal para mostrar mis proyectos y habilidades"
         }
       }
     },
     contact: {
       title: "Contacto",
-      description: "¿Tienes un proyecto en mente? Me encantaría escuchar sobre él. Siempre estoy abierto a nuevas oportunidades y colaboraciones.",
+      description: "¿Tienes un proyecto en mente? Me encantaría escuchar sobre él. Siempre estoy abierto a nuevas oportunidades.",
       footer: `© ${new Date().getFullYear()} Daniel Cerpa — Ingeniero de Sistemas`,
       built_with: "Construido con HTML5, CSS3, Vanilla JS & GSAP"
     }
@@ -53,18 +55,23 @@ const translations = {
   en: {
     nav: {
       home: "Home",
+      about: "About Me",
       skills: "Skills",
       projects: "Projects",
       contact: "Contact"
     },
+
+    about:{
+      title: "About Me",
+      description: "<p>I am a Systems Engineer focused on web development and data analysis. I like creating effective applications and solutions that solve everyday problems in the workplace.</p><p>My skills are centered on vanilla development (<span class=\"tech-highlight tech-html\">HTML</span>, <span class=\"tech-highlight tech-css\">CSS</span>, <span class=\"tech-highlight tech-js\">JavaScript</span> and multiple libraries) to achieve more fluid and responsive interfaces that others can easily understand, complemented by frameworks like <span class=\"tech-highlight tech-react\">React</span> and <span class=\"tech-highlight tech-next\">Next.js</span>.</p><p>For data analysis, I like working with <span class=\"tech-highlight tech-python\">Python</span> and its ecosystem of libraries such as <span class=\"tech-highlight tech-pandas\">Pandas</span>, <span class=\"tech-highlight tech-numpy\">NumPy</span>, <span class=\"tech-highlight tech-matplotlib\">Matplotlib</span> and <span class=\"tech-highlight tech-duckdb\">DuckDB</span>. In databases, I work with <span class=\"tech-highlight tech-postgres\">PostgreSQL</span> and <span class=\"tech-highlight tech-mysql\">MySQL</span> (specializing in the latter).</p>"
+    },
     welcome: {
-      title: "FRONTEND DEVELOPER",
-      badge: "Frontend Specialist",
+      title: "FULLSTACK DEVELOPER",
+      badge: "Fullstack Specialist",
       projects: "Projects",
-      years_exp: "Years Experience",
       tech_stack: "Technologies",
       about_title: "About Me",
-      about_text_1: "Developer focused on creating modern and intuitive experiences.",
+      about_text_1: "Fullstack Developer and Data Analyst",
       focus: "FOCUS",
       philosophy: "PHILOSOPHY",
       objective: "OBJECTIVE",
@@ -74,7 +81,8 @@ const translations = {
     skills: {
       static_prefix: "Work with",
       specialized_prefix: "Specialized in",
-      default_hover: "these tools"
+      default_hover: "these tools",
+      disclaimer: "But I can always adapt to new technologies."
     },
     projects: {
       title: "Projects",
@@ -86,16 +94,12 @@ const translations = {
         Soportes: {
           title: "Technical Support System",
           description: "Web application for the management of technical support of multiple companies."
-        },
-        portfolio: {
-          title: "Portfolio",
-          description: "Personal portfolio to show my projects and skills."
         }
       }
     },
     contact: {
       title: "Contact",
-      description: "Have a project in mind? I'd love to hear about it. I'm always open to new opportunities and collaborations.",
+      description: "Have a project in mind? I'd love to hear about it. I'm always open to new opportunities.",
       footer: `© ${new Date().getFullYear()} Daniel Cerpa — Systems Engineer`,
       built_with: "Built with HTML5, CSS3, Vanilla JS & GSAP"
     }
@@ -114,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initInteractiveGrid();
   initAnimations();
   initProjectsCarousel();
+  initCopyEmail();
 });
 
 // 1. Language Logic
@@ -150,6 +155,8 @@ function applyLanguage(lang) {
           el.textContent = value;
           el.classList.add('typing-done');
         }
+      } else if (el.classList.contains('about-description')) {
+        el.innerHTML = value;
       } else {
         el.textContent = value;
       }
@@ -191,10 +198,12 @@ function initLanguageSwitcher() {
 function initNavbar() {
   const navbar = document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.navbar-link');
-  const sections = ['home', 'skills', 'projects', 'contact'];
+  const sections = ['home', 'about', 'skills', 'projects', 'contact'];
 
   let isScrollTicking = false;
   const updateNavbarOnScroll = () => {
+    const navbarHeight = navbar ? navbar.offsetHeight : 70;
+
     // Glassmorphism shadow on scroll
     if (window.scrollY > 20) {
       navbar?.classList.add('navbar--scrolled');
@@ -204,18 +213,24 @@ function initNavbar() {
 
     // Active link highlighting
     let currentSection = 'home';
-    const offsets = sections.map((id) => {
-      const el = document.getElementById(id);
-      if (!el) return { id, top: Infinity };
-      return { id, top: el.getBoundingClientRect().top };
-    });
+    
+    // Check if user scrolled to bottom of page (select contact)
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+      currentSection = 'contact';
+    } else {
+      const offsets = sections.map((id) => {
+        const el = document.getElementById(id);
+        if (!el) return { id, top: Infinity };
+        return { id, top: el.getBoundingClientRect().top - navbarHeight - 40 };
+      });
 
-    const visible = offsets
-      .filter(({ top }) => top <= window.innerHeight * 0.4)
-      .sort((a, b) => b.top - a.top);
+      const visible = offsets
+        .filter(({ top }) => top <= 0)
+        .sort((a, b) => b.top - a.top);
 
-    if (visible.length > 0) {
-      currentSection = visible[0].id;
+      if (visible.length > 0) {
+        currentSection = visible[0].id;
+      }
     }
 
     navLinks.forEach((link) => {
@@ -237,14 +252,30 @@ function initNavbar() {
   window.addEventListener('scroll', handleScroll, { passive: true });
   updateNavbarOnScroll(); // Initial run
 
-  // Click scroll handler
+  // Click scroll handler with exact navbar offset
   document.querySelectorAll('[data-scroll-to]').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = btn.getAttribute('data-scroll-to');
+      if (targetId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const navbarHeight = navbar ? navbar.offsetHeight : 70;
+        let top = 0;
+        let el = targetEl;
+        while (el) {
+          top += el.offsetTop;
+          el = el.offsetParent;
+        }
+        const targetPosition = top - navbarHeight - 15;
+        
+        window.scrollTo({
+          top: Math.max(0, targetPosition),
+          behavior: 'smooth'
+        });
       }
     });
   });
@@ -430,12 +461,16 @@ function initSkillsHover() {
 // 4. Interactive Grid Logic
 function initInteractiveGrid() {
   const root = document.documentElement;
+  const homeSec = document.getElementById('home');
   
   window.addEventListener('mousemove', (e) => {
-    // Update CSS variables for the mask-image radial gradient
-    // Use pageX/pageY so it tracks correctly when scrolling down the page
-    root.style.setProperty('--mouse-x', e.pageX + 'px');
-    root.style.setProperty('--mouse-y', e.pageY + 'px');
+    if (homeSec) {
+      const rect = homeSec.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      root.style.setProperty('--mouse-x', x + 'px');
+      root.style.setProperty('--mouse-y', y + 'px');
+    }
   });
 
   // Magnetic Hover states for interactive elements (Anime.js)
@@ -474,17 +509,19 @@ function initAnimations() {
     const sections = document.querySelectorAll('section');
     sections.forEach(sec => {
       if (sec.id === 'home') return; // Handled by Anime.js
-      gsap.fromTo(sec, 
-        { opacity: 0, y: 100 },
+      const targetChild = sec.firstElementChild || sec;
+      gsap.fromTo(targetChild, 
+        { opacity: 0, y: 40 },
         {
           opacity: 1, 
           y: 0,
-          duration: 1,
-          ease: "power3.out",
+          duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: sec,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
+            start: "top 85%",
+            end: "bottom top",
+            toggleActions: "play none play reverse"
           }
         }
       );
@@ -585,47 +622,6 @@ function initProjectsCarousel() {
     }
   });
 
-  function startTypewriterSequence(titleEl, titleText, descEl, descText) {
-    if (typingTimeout) clearTimeout(typingTimeout);
-    
-    if (titleEl) {
-      titleEl.textContent = '';
-      titleEl.classList.remove('typing-done');
-    }
-    if (descEl) {
-      descEl.textContent = '';
-      descEl.classList.remove('typing-done');
-    }
-
-    // Step 1: Type Title
-    let titleIdx = 0;
-    function typeTitleStep() {
-      if (titleEl && titleIdx < titleText.length) {
-        titleEl.textContent += titleText.charAt(titleIdx);
-        titleIdx++;
-        typingTimeout = setTimeout(typeTitleStep, 18);
-      } else {
-        if (titleEl) titleEl.classList.add('typing-done');
-        // Step 2: Type Description after title
-        typeDescStep();
-      }
-    }
-
-    let descIdx = 0;
-    function typeDescStep() {
-      if (descEl && descIdx < descText.length) {
-        descEl.textContent += descText.charAt(descIdx);
-        descIdx++;
-        typingTimeout = setTimeout(typeDescStep, 12);
-      } else {
-        if (descEl) descEl.classList.add('typing-done');
-        isTransitioning = false;
-      }
-    }
-
-    typeTitleStep();
-  }
-
   function switchProject(targetIndex) {
     if (typingTimeout) clearTimeout(typingTimeout);
     if (erasingTimeout) clearTimeout(erasingTimeout);
@@ -653,15 +649,19 @@ function initProjectsCarousel() {
       slide.classList.toggle('active', i === currentProjectIndex);
     });
 
-    // 2. Start typewriter sequence immediately for new slide title & description
     const newActiveSlide = infoSlides[currentProjectIndex];
     const newTitleEl = newActiveSlide?.querySelector('.carousel-title');
     const newDescEl = newActiveSlide?.querySelector('.carousel-desc');
 
-    const titleText = newTitleEl ? (newTitleEl.getAttribute('data-full-text') || newTitleEl.textContent.trim()) : '';
-    const descText = newDescEl ? (newDescEl.getAttribute('data-full-text') || newDescEl.textContent.trim()) : '';
-
-    startTypewriterSequence(newTitleEl, titleText, newDescEl, descText);
+    if (newTitleEl) {
+      const titleText = newTitleEl.getAttribute('data-full-text') || newTitleEl.textContent.trim();
+      newTitleEl.textContent = titleText;
+    }
+    if (newDescEl) {
+      const descText = newDescEl.getAttribute('data-full-text') || newDescEl.textContent.trim();
+      newDescEl.textContent = descText;
+    }
+    isTransitioning = false;
   }
 
   // Cursor tracking for hover button inside each visual slide card
@@ -713,5 +713,49 @@ function initProjectsCarousel() {
 
   // Initial trigger & centering for first slide
   switchProject(0);
+}
+
+// 7. Copy Email to Clipboard
+function initCopyEmail() {
+  const btn = document.getElementById('copyEmailBtn');
+  const toast = document.getElementById('copyToast');
+  if (!btn) return;
+
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = btn.getAttribute('data-email') || 'dvillanuevacerpa@gmail.com';
+
+    function showToast() {
+      if (toast) {
+        toast.textContent = currentLang === 'es' ? '¡Copiado!' : 'Copied!';
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2000);
+      }
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(showToast).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+
+    function fallbackCopy() {
+      const textarea = document.createElement('textarea');
+      textarea.value = email;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast();
+      } catch (err) {
+        console.error('Failed to copy email', err);
+      }
+      document.body.removeChild(textarea);
+    }
+  });
 }
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daniel Cerpa — Portfolio</title>
-  <meta name="description" content="Portfolio de Daniel Cerpa - Desarrollador Frontend e Ingeniero de Sistemas">
+  <meta name="description" content="Portfolio de Daniel Cerpa - Desarrollador Fullstack e Ingeniero de Sistemas">
   <link rel="icon" type="image/svg+xml" href="./public/DC.svg">
   
   <!-- Google Fonts -->
@@ -17,10 +17,6 @@
 </head>
 <body>
   <div class="app">
-    <div class="bg-spotlight">
-      <div class="bg-tapestry-rainbow"></div>
-    </div>
-
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="navbar-inner">
@@ -32,6 +28,12 @@
           <li>
             <button class="navbar-link navbar-link--active" data-section="home" data-scroll-to="home">
               <span data-i18n="nav.home">Inicio</span>
+              <span class="navbar-indicator"></span>
+            </button>
+          </li>
+          <li>
+            <button class="navbar-link" data-section="about" data-scroll-to="about">
+              <span data-i18n="nav.about">Sobre Mí</span>
               <span class="navbar-indicator"></span>
             </button>
           </li>
@@ -74,6 +76,9 @@
     <main class="main-content">
       <!-- HOME / WELCOME SECTION -->
       <section id="home">
+        <div class="bg-spotlight">
+          <div class="bg-tapestry-rainbow"></div>
+        </div>
         <div class="welcome-wallpaper">
           <div class="welcome-content hero-centered">
             <!-- Top Name / Brand -->
@@ -109,6 +114,24 @@
 
       <!-- CONTAINER FOR SECTIONS -->
       <div class="container">
+        <!-- ABOUT SECTION -->
+        <section id="about">
+          <div class="about-section-wrapper">
+            <div class="section-header">
+              <h2 class="section-title" data-i18n="about.title">Sobre Mí</h2>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="about-content">
+              <div class="about-description" data-i18n="about.description">
+                <p>Soy un Ingeniero de Sistemas enfocado en el desarrollo web y el análisis de datos. Me apasiona crear aplicaciones y soluciones efectivas que resuelvan problemas cotidianos en el mundo laboral.</p>
+                <p>Mis habilidades se centran en el desarrollo vanilla (<span class="tech-highlight tech-html">HTML</span>, <span class="tech-highlight tech-css">CSS</span>, <span class="tech-highlight tech-js">JavaScript</span> y múltiples librerías), complementándome con frameworks modernos como <span class="tech-highlight tech-react">React</span> y <span class="tech-highlight tech-next">Next.js</span>.</p>
+                <p>Para el análisis de datos me gusta trabajar con <span class="tech-highlight tech-python">Python</span> y su ecosistema de librerías como <span class="tech-highlight tech-pandas">Pandas</span>, <span class="tech-highlight tech-numpy">NumPy</span>, <span class="tech-highlight tech-matplotlib">Matplotlib</span> y <span class="tech-highlight tech-duckdb">DuckDB</span>. En bases de datos trabajo con <span class="tech-highlight tech-postgres">PostgreSQL</span> y <span class="tech-highlight tech-mysql">MySQL</span> (especializándome en este último).</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- SKILLS SECTION -->
         <section id="skills">
           <div class="skills-section">
@@ -133,7 +156,6 @@
                 <div class="modern-skill-card" data-skill="Bootstrap"><div class="skill-logo-wrapper"><img src="./public/bootstrap.svg" alt="Bootstrap" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="Vite"><div class="skill-logo-wrapper"><img src="./public/vite.svg" alt="Vite" class="skill-logo" loading="lazy"></div></div>
                 <!-- Backend -->
-                <div class="modern-skill-card" data-skill="Node.js"><div class="skill-logo-wrapper"><img src="./public/nodejs.svg" alt="Node.js" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card specialized-skill" data-skill="Python" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/python.svg" alt="Python" class="skill-logo" loading="lazy"></div></div>
                 <!-- Databases & Data -->
@@ -141,9 +163,9 @@
                 <div class="modern-skill-card" data-skill="PostgreSQL"><div class="skill-logo-wrapper"><img src="./public/postgresql.svg" alt="PostgreSQL" class="skill-logo" loading="lazy"></div></div>
                 <!-- Tools & DevOps -->
                 <div class="modern-skill-card" data-skill="Docker"><div class="skill-logo-wrapper"><img src="./public/docker.svg" alt="Docker" class="skill-logo" loading="lazy"></div></div>
+                <div class="modern-skill-card" data-skill="Linux"><div class="skill-logo-wrapper"><img src="./public/linux.svg" alt="Linux" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="Git"><div class="skill-logo-wrapper"><img src="./public/git.svg" alt="Git" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" loading="lazy"></div></div>
-                <div class="modern-skill-card" data-skill="Markdown"><div class="skill-logo-wrapper"><img src="./public/markdown.svg" alt="Markdown" class="skill-logo" loading="lazy"></div></div>
 
                 <!-- Set 2 -->
                 <!-- Frontend & Web -->
@@ -156,7 +178,6 @@
                 <div class="modern-skill-card" data-skill="Bootstrap"><div class="skill-logo-wrapper"><img src="./public/bootstrap.svg" alt="Bootstrap" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="Vite"><div class="skill-logo-wrapper"><img src="./public/vite.svg" alt="Vite" class="skill-logo" loading="lazy"></div></div>
                 <!-- Backend -->
-                <div class="modern-skill-card" data-skill="Node.js"><div class="skill-logo-wrapper"><img src="./public/nodejs.svg" alt="Node.js" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card specialized-skill" data-skill="Python" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/python.svg" alt="Python" class="skill-logo" loading="lazy"></div></div>
                 <!-- Databases & Data -->
@@ -164,9 +185,9 @@
                 <div class="modern-skill-card" data-skill="PostgreSQL"><div class="skill-logo-wrapper"><img src="./public/postgresql.svg" alt="PostgreSQL" class="skill-logo" loading="lazy"></div></div>
                 <!-- Tools & DevOps -->
                 <div class="modern-skill-card" data-skill="Docker"><div class="skill-logo-wrapper"><img src="./public/docker.svg" alt="Docker" class="skill-logo" loading="lazy"></div></div>
+                <div class="modern-skill-card" data-skill="Linux"><div class="skill-logo-wrapper"><img src="./public/linux.svg" alt="Linux" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="Git"><div class="skill-logo-wrapper"><img src="./public/git.svg" alt="Git" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" loading="lazy"></div></div>
-                <div class="modern-skill-card" data-skill="Markdown"><div class="skill-logo-wrapper"><img src="./public/markdown.svg" alt="Markdown" class="skill-logo" loading="lazy"></div></div>
 
                 <!-- Set 3 -->
                 <!-- Frontend & Web -->
@@ -179,7 +200,6 @@
                 <div class="modern-skill-card" data-skill="Bootstrap"><div class="skill-logo-wrapper"><img src="./public/bootstrap.svg" alt="Bootstrap" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="Vite"><div class="skill-logo-wrapper"><img src="./public/vite.svg" alt="Vite" class="skill-logo" loading="lazy"></div></div>
                 <!-- Backend -->
-                <div class="modern-skill-card" data-skill="Node.js"><div class="skill-logo-wrapper"><img src="./public/nodejs.svg" alt="Node.js" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card specialized-skill" data-skill="Python" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/python.svg" alt="Python" class="skill-logo" loading="lazy"></div></div>
                 <!-- Databases & Data -->
@@ -187,9 +207,17 @@
                 <div class="modern-skill-card" data-skill="PostgreSQL"><div class="skill-logo-wrapper"><img src="./public/postgresql.svg" alt="PostgreSQL" class="skill-logo" loading="lazy"></div></div>
                 <!-- Tools & DevOps -->
                 <div class="modern-skill-card" data-skill="Docker"><div class="skill-logo-wrapper"><img src="./public/docker.svg" alt="Docker" class="skill-logo" loading="lazy"></div></div>
+                <div class="modern-skill-card" data-skill="Linux"><div class="skill-logo-wrapper"><img src="./public/linux.svg" alt="Linux" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="Git"><div class="skill-logo-wrapper"><img src="./public/git.svg" alt="Git" class="skill-logo" loading="lazy"></div></div>
                 <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" loading="lazy"></div></div>
-                <div class="modern-skill-card" data-skill="Markdown"><div class="skill-logo-wrapper"><img src="./public/markdown.svg" alt="Markdown" class="skill-logo" loading="lazy"></div></div>
+              </div>
+            </div>
+
+            <div class="disclaimer-wrapper">
+              <div class="disclaimer-aura">
+                <div class="disclaimer-badge">
+                  <span class="disclaimer-text" data-i18n="skills.disclaimer" data-i18n-es="skills.disclaimer-es">Pero siempre puedo adaptarme a nuevas tecnologías.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -225,20 +253,13 @@
                     </a>
                   </div>
 
-                  <!-- Slide 3: Portfolio -->
-                  <div class="project-visual-slide" data-index="2">
-                    <div class="visual-placeholder bg-gradient-3"></div>
-                    <a href="https://github.com/VillanuevaDaniel" target="_blank" rel="noopener noreferrer" class="carousel-hover-btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                      <span>Ver Repositorio</span>
-                    </a>
                   </div>
                 </div>
               </div>
 
               <!-- Bottom Bar: Text Content + Controls side-by-side -->
               <div class="projects-bottom-bar">
-                <!-- Static Text Content Container (Does not slide horizontally) -->
+                <!-- Static Text Container (Does not slide horizontally) -->
                 <div class="projects-info-wrapper">
                   <!-- Info Slide 1: Entomología -->
                   <div class="project-info-slide active" data-index="0">
@@ -269,28 +290,15 @@
                       <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" loading="lazy"></div>
                     </div>
                   </div>
-
-                  <!-- Info Slide 3: Portfolio -->
-                  <div class="project-info-slide" data-index="2">
-                    <h3 class="carousel-title" data-i18n="projects.items.portfolio.title">Portfolio</h3>
-                    <p class="carousel-desc" data-i18n="projects.items.portfolio.description">Portfolio personal para mostrar mis proyectos y habilidades</p>
-
-                    <div class="carousel-tech-list">
-                      <div class="tech-icon" title="HTML5"><img src="./public/html5.svg" alt="HTML5" loading="lazy"></div>
-                      <div class="tech-icon" title="CSS3"><img src="./public/css.svg" alt="CSS3" loading="lazy"></div>
-                      <div class="tech-icon" title="JavaScript"><img src="./public/javascript.svg" alt="JavaScript" loading="lazy"></div>
-                      <div class="tech-icon" title="GSAP"><img src="./public/gsap-greensock.svg" alt="GSAP" loading="lazy"></div>
-                    </div>
-                  </div>
                 </div>
 
                 <!-- Navigation Arrow Controls -->
                 <div class="projects-carousel-controls">
                   <button class="carousel-btn prev-btn" id="projectPrevBtn" aria-label="Previous project">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                   </button>
                   <button class="carousel-btn next-btn" id="projectNextBtn" aria-label="Next project">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                   </button>
                 </div>
               </div>
@@ -313,13 +321,14 @@
                 </p>
 
                 <div class="contact-grid">
-                  <!-- Email -->
-                  <a href="mailto:dvillanuevacerpa@gmail.com" class="modern-contact-card" title="Email: dvillanuevacerpa@gmail.com" aria-label="Email">
+                  <!-- Email (Copy to Clipboard) -->
+                  <button id="copyEmailBtn" class="modern-contact-card" data-email="dvillanuevacerpa@gmail.com" title="Copiar correo: dvillanuevacerpa@gmail.com" aria-label="Copiar Correo">
                     <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect width="20" height="16" x="2" y="4" rx="2"/>
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                     </svg>
-                  </a>
+                    <span id="copyToast" class="copy-toast">¡Copiado!</span>
+                  </button>
 
                   <!-- GitHub -->
                   <a href="https://github.com/danielcerpa" target="_blank" rel="noopener noreferrer" class="modern-contact-card" title="GitHub: github.com/danielcerpa" aria-label="GitHub">
