@@ -30,7 +30,11 @@ const translations = {
       static_prefix: "Trabajo con",
       specialized_prefix: "Especializado en",
       default_hover: "estas herramientas",
-      disclaimer: "Pero siempre puedo adaptarme a nuevas tecnologías."
+      disclaimer: "Pero siempre puedo adaptarme a nuevas tecnologías.",
+      frontend: "Frontend & Web",
+      backend: "Backend",
+      databases: "Datos",
+      tools: "Herramientas & DevOps"
     },
     projects: {
       title: "Proyectos",
@@ -86,7 +90,11 @@ const translations = {
       static_prefix: "Work with",
       specialized_prefix: "Specialized in",
       default_hover: "these tools",
-      disclaimer: "But I can always adapt to new technologies."
+      disclaimer: "But I can always adapt to new technologies.",
+      frontend: "Frontend & Web",
+      backend: "Backend",
+      databases: "Data",
+      tools: "Tools & DevOps"
     },
     projects: {
       title: "Projects",
@@ -289,139 +297,18 @@ function initNavbar() {
   });
 }
 
-// 3. Skills Carousel (Auto-scroll + Mouse/Touch Drag + Hover Tracker)
+// 3. Skills Hover Tracker (Static grouped sections)
 function initSkillsHover() {
-  const wrapper = document.querySelector('.carousel-wrapper');
-  const track = document.getElementById('carouselTrack');
   const highlightEl = document.getElementById('highlightTech');
-  if (!wrapper || !track || !highlightEl) return;
+  if (!highlightEl) return;
 
-  let currentOffset = 0;
-  let isDragging = false;
-  let startX = 0;
-  let startY = 0;
-  let startOffset = 0;
-  let isHovered = false;
-  let isTouchDirectionDetermined = false;
-  let isHorizontalDrag = false;
-  const speed = 0.75; // auto-scroll speed (px per frame)
-
-  const getSetWidth = () => track.scrollWidth / 3;
-
-  function wrapOffset(val) {
-    const setWidth = getSetWidth();
-    if (setWidth <= 0) return val;
-    while (val <= -setWidth) {
-      val += setWidth;
-    }
-    while (val > 0) {
-      val -= setWidth;
-    }
-    return val;
-  }
-
-  function updateTransform() {
-    track.style.transform = `translateX(${currentOffset}px)`;
-  }
-
-  // Continuous auto-scroll loop
-  function tick() {
-    if (!isDragging && !isHovered) {
-      currentOffset -= speed;
-      currentOffset = wrapOffset(currentOffset);
-      updateTransform();
-    }
-    requestAnimationFrame(tick);
-  }
-
-  // Separate Dragging logic for Mouse (PC) & Touch (Mobile)
-  let isTouchActive = false;
-
-  function onMouseDown(e) {
-    isDragging = true;
-    startX = e.clientX;
-    startOffset = currentOffset;
-    wrapper.classList.add('is-dragging');
-  }
-
-  function onMouseMove(e) {
-    if (!isDragging) return;
-    const deltaX = e.clientX - startX;
-    currentOffset = wrapOffset(startOffset + deltaX);
-    updateTransform();
-  }
-
-  function onMouseUp() {
-    if (!isDragging) return;
-    isDragging = false;
-    wrapper.classList.remove('is-dragging');
-  }
-
-  function onTouchStart(e) {
-    if (!e.touches || e.touches.length === 0) return;
-    isTouchActive = true;
-    isDragging = false;
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    startOffset = currentOffset;
-  }
-
-  function onTouchMove(e) {
-    if (!isTouchActive || !e.touches || e.touches.length === 0) return;
-    const currentX = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
-    const deltaX = currentX - startX;
-    const deltaY = currentY - startY;
-
-    if (!isDragging) {
-      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 5) {
-        // Vertical swipe: allow native page scroll without interference
-        isTouchActive = false;
-        return;
-      }
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
-        // Horizontal swipe: activate carousel drag
-        isDragging = true;
-        wrapper.classList.add('is-dragging');
-      } else {
-        return;
-      }
-    }
-
-    currentOffset = wrapOffset(startOffset + deltaX);
-    updateTransform();
-  }
-
-  function onTouchEnd() {
-    isTouchActive = false;
-    if (isDragging) {
-      isDragging = false;
-      wrapper.classList.remove('is-dragging');
-    }
-  }
-
-  wrapper.addEventListener('mousedown', onMouseDown);
-  window.addEventListener('mousemove', onMouseMove);
-  window.addEventListener('mouseup', onMouseUp);
-
-  wrapper.addEventListener('touchstart', onTouchStart, { passive: true });
-  window.addEventListener('touchmove', onTouchMove, { passive: true });
-  window.addEventListener('touchend', onTouchEnd);
-  window.addEventListener('touchcancel', onTouchEnd);
-
-  // Hover tracker for highlightTech
-  let mouseX = 0;
-  let mouseY = 0;
-
-  const checkHover = () => {
-    if (!isHovered) return;
-    const element = document.elementFromPoint(mouseX, mouseY);
-    const card = element?.closest('.modern-skill-card');
-    const skillName = card?.getAttribute('data-skill') || null;
-    const isSpecialized = card?.getAttribute('data-specialized') === 'true';
-    const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
-
-    if (skillName !== currentHoveredSkill) {
+  const cards = document.querySelectorAll('.modern-skill-card');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      const skillName = card.getAttribute('data-skill') || null;
+      const isSpecialized = card.getAttribute('data-specialized') === 'true';
+      const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
+      
       currentHoveredSkill = skillName;
       const t = translations[currentLang].skills;
       if (skillName) {
@@ -429,41 +316,19 @@ function initSkillsHover() {
         if (staticPrefixEl) {
           staticPrefixEl.textContent = isSpecialized ? (t.specialized_prefix || "Especializado en") : t.static_prefix;
         }
-      } else {
-        highlightEl.textContent = t.default_hover;
-        if (staticPrefixEl) {
-          staticPrefixEl.textContent = t.static_prefix;
-        }
       }
-    }
-  };
+    });
 
-  wrapper.addEventListener('mouseenter', (e) => {
-    isHovered = true;
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    checkHover();
+    card.addEventListener('mouseleave', () => {
+      currentHoveredSkill = null;
+      const t = translations[currentLang].skills;
+      highlightEl.textContent = t.default_hover;
+      const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
+      if (staticPrefixEl) {
+        staticPrefixEl.textContent = t.static_prefix;
+      }
+    });
   });
-
-  wrapper.addEventListener('mouseleave', () => {
-    isHovered = false;
-    currentHoveredSkill = null;
-    const t = translations[currentLang].skills;
-    highlightEl.textContent = t.default_hover;
-    const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
-    if (staticPrefixEl) {
-      staticPrefixEl.textContent = t.static_prefix;
-    }
-  });
-
-  wrapper.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    checkHover();
-  });
-
-  // Start continuous loop
-  requestAnimationFrame(tick);
 }
 
 // 4. Interactive Grid Logic
