@@ -1582,3 +1582,64 @@ section {
   .projects-info-wrapper { min-height: 230px; }
   .carousel-desc { min-height: 5.5rem; }
 }
+
+/* Mobile Actions Carousel styles */
+.mobile-project-actions-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide the hover cursor button completely on mobile */
+  .project-visual-slide .carousel-hover-btn {
+    display: none !important;
+  }
+
+  .mobile-project-actions-wrapper {
+    display: block;
+    order: 0;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobile-action-slide {
+    display: none;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .mobile-action-slide.active {
+    display: flex;
+  }
+  
+  .mobile-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 22px;
+    border-radius: 99px;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  .mobile-action-btn svg {
+    flex-shrink: 0;
+  }
+  
+  .mobile-action-btn.primary {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+  }
+  
+  .mobile-action-btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}

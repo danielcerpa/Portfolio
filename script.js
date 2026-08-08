@@ -38,6 +38,8 @@ const translations = {
     },
     projects: {
       title: "Proyectos",
+      visit_site: "Visitar Sitio",
+      view_repo: "GitHub",
       items: {
         Entomologia: {
           title: "Sistema de Entomología",
@@ -53,7 +55,7 @@ const translations = {
         },
         DataForge: {
           title: "Data Forge",
-          description: "Aplicación web que permite visualizar, modificar y limpiar archivos csv y xlsx. Adicionalmente permite re-exportarlos en diferentes formatos."
+          description: "Herramienta de ETL y procesamiento de datos diseñada para la extracción, transformación y carga eficiente a gran escala."
         }
       }
     },
@@ -102,6 +104,8 @@ const translations = {
     },
     projects: {
       title: "Projects",
+      visit_site: "Visit Site",
+      view_repo: "GitHub",
       items: {
         Entomologia: {
           title: "Entomology System",
@@ -117,7 +121,7 @@ const translations = {
         },
         DataForge: {
           title: "Data Forge",
-          description: "Web application that allows you to view, modify and clean csv and xlsx files. Additionally, it allows you to re-export them in different formats."
+          description: "ETL and data processing tool designed for efficient extraction, transformation, and loading of large-scale data."
         }
       }
     },
@@ -530,6 +534,11 @@ function initProjectsCarousel() {
       slide.classList.toggle('active', i === currentProjectIndex);
     });
 
+    const mobileActionSlides = document.querySelectorAll('.mobile-action-slide');
+    mobileActionSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentProjectIndex);
+    });
+
     const newActiveSlide = infoSlides[currentProjectIndex];
     const newTitleEl = newActiveSlide?.querySelector('.carousel-title');
     const newDescEl = newActiveSlide?.querySelector('.carousel-desc');
@@ -570,7 +579,7 @@ function initProjectsCarousel() {
         const span = btn.querySelector('span');
         const svg = btn.querySelector('svg');
         if (isLeft) {
-          if (span) span.textContent = currentLang === 'es' ? 'Ver Repositorio' : 'View Repository';
+          if (span) span.textContent = 'GitHub';
           if (svg) {
             svg.innerHTML = `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>`;
           }
