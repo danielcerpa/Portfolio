@@ -50,6 +50,10 @@ const translations = {
         Lavanderia: {
           title: "Gestor de Lavanderías SaaS",
           description: "Plataforma SaaS para la administración integral de negocios de lavandería, control de pedidos en tiempo real, seguimiento de turnos, métricas financieras y gestión de clientes."
+        },
+        DataForge: {
+          title: "Data Forge",
+          description: "Aplicación web que permite visualizar, modificar y limpiar archivos csv y xlsx. Adicionalmente permite re-exportarlos en diferentes formatos."
         }
       }
     },
@@ -110,6 +114,10 @@ const translations = {
         Lavanderia: {
           title: "Laundry Management SaaS",
           description: "SaaS platform for comprehensive laundry business management, real-time order tracking, shift scheduling, financial metrics, and customer management."
+        },
+        DataForge: {
+          title: "Data Forge",
+          description: "Web application that allows you to view, modify and clean csv and xlsx files. Additionally, it allows you to re-export them in different formats."
         }
       }
     },
@@ -550,13 +558,43 @@ function initProjectsCarousel() {
       btn.style.left = `${x}px`;
       btn.style.top = `${y}px`;
       slide.classList.add('is-hovered');
+
+      // Split hover logic for projects with both website and repository
+      const linkLeft = slide.getAttribute('data-link-left');
+      const linkRight = slide.getAttribute('data-link-right');
+      if (linkLeft && linkRight) {
+        const isLeft = x < rect.width / 2;
+        const targetLink = isLeft ? linkLeft : linkRight;
+        btn.setAttribute('href', targetLink);
+
+        const span = btn.querySelector('span');
+        const svg = btn.querySelector('svg');
+        if (isLeft) {
+          if (span) span.textContent = currentLang === 'es' ? 'Ver Repositorio' : 'View Repository';
+          if (svg) {
+            svg.innerHTML = `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>`;
+          }
+        } else {
+          if (span) span.textContent = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
+          if (svg) {
+            svg.innerHTML = `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`;
+          }
+        }
+      }
     });
 
     slide.addEventListener('mouseleave', () => {
       slide.classList.remove('is-hovered');
+      // Reset button default text/icon when leaving
+      const span = btn.querySelector('span');
+      const svg = btn.querySelector('svg');
+      if (span) span.textContent = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
+      if (svg) {
+        svg.innerHTML = `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`;
+      }
     });
 
-    slide.addEventListener('click', () => {
+    slide.addEventListener('click', (e) => {
       const href = btn.getAttribute('href');
       if (href) {
         window.open(href, '_blank', 'noopener,noreferrer');

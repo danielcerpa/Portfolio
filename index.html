@@ -204,8 +204,17 @@
               <!-- Visual Slider (Images side-by-side, peeking next/prev) -->
               <div class="projects-visual-slider">
                 <div class="projects-visual-track" id="projectsVisualTrack">
+                  <!-- Slide 4: Data Forge -->
+                  <div class="project-visual-slide active" data-index="0" data-link-left="https://github.com/danielcerpa/Data-Forge" data-link-right="https://data-forge-dvc.netlify.app/">
+                    <img src="./data_forge.png" alt="Data Forge" class="project-image">
+                    <a href="https://data-forge-dvc.netlify.app/" target="_blank" rel="noopener noreferrer" class="carousel-hover-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      <span>Visitar Sitio</span>
+                    </a>
+                  </div>
+
                   <!-- Slide 1: Entomología -->
-                  <div class="project-visual-slide active" data-index="0">
+                  <div class="project-visual-slide" data-index="1">
                     <img src="./entomologia.png" alt="Sistema de Entomología" class="project-image">
                     <a href="https://minimalcodetest.com/tecno/UG/index.html" target="_blank" rel="noopener noreferrer" class="carousel-hover-btn">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -214,7 +223,7 @@
                   </div>
 
                   <!-- Slide 2: Sistema de Soportes -->
-                  <div class="project-visual-slide" data-index="1">
+                  <div class="project-visual-slide" data-index="2">
                     <img src="./soportes.png" alt="Sistema de Soportes" class="project-image">
                     <a href="https://minimalcodetest.com/tecno/soporte/login.php" target="_blank" rel="noopener noreferrer" class="carousel-hover-btn">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -223,7 +232,7 @@
                   </div>
 
                   <!-- Slide 3: Gestor de Lavanderías SaaS -->
-                  <div class="project-visual-slide" data-index="2">
+                  <div class="project-visual-slide" data-index="3">
                     <img src="./lavan.png" alt="Gestor de Lavanderías SaaS" class="project-image">
                     <a href="https://minimalcodetest.com/tecno/Lavanderia/login.html" target="_blank" rel="noopener noreferrer" class="carousel-hover-btn">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -237,8 +246,21 @@
               <div class="projects-bottom-bar">
                 <!-- Static Text Container (Does not slide horizontally) -->
                 <div class="projects-info-wrapper">
-                  <!-- Info Slide 1: Entomología -->
+                  <!-- Info Slide 4: Data Forge -->
                   <div class="project-info-slide active" data-index="0">
+                    <h3 class="carousel-title" data-i18n="projects.items.DataForge.title">Data Forge</h3>
+                    <p class="carousel-desc" data-i18n="projects.items.DataForge.description">Herramienta de ETL y procesamiento de datos diseñada para la extracción, transformación y carga eficiente a gran escala.</p>
+                    
+                    <div class="carousel-tech-list">
+                      <div class="tech-icon" title="React"><img src="./public/react_light.svg" alt="React" loading="lazy"></div>
+                      <div class="tech-icon" title="Vite"><img src="./public/vite.svg" alt="Vite" loading="lazy"></div>
+                      <div class="tech-icon" title="JavaScript"><img src="./public/javascript.svg" alt="JavaScript" loading="lazy"></div>
+                      <div class="tech-icon" title="Git"><img src="./public/git.svg" alt="Git" loading="lazy"></div>
+                    </div>
+                  </div>
+
+                  <!-- Info Slide 1: Entomología -->
+                  <div class="project-info-slide" data-index="1">
                     <h3 class="carousel-title" data-i18n="projects.items.Entomologia.title">Sistema de Entomología</h3>
                     <p class="carousel-desc" data-i18n="projects.items.Entomologia.description">Sistema para la gestión y estudio entomológico desarrollado mediante convenio de ITESI con la UG. Contiene una guia de uso con driverjs en cada uno de sus modulos</p>
 
@@ -253,7 +275,7 @@
                   </div>
 
                   <!-- Info Slide 2: Sistema de Soportes -->
-                  <div class="project-info-slide" data-index="1">
+                  <div class="project-info-slide" data-index="2">
                     <h3 class="carousel-title" data-i18n="projects.items.Soportes.title">Sistema de Soportes</h3>
                     <p class="carousel-desc" data-i18n="projects.items.Soportes.description">Sistema desarrollado en JS Vanilla en MINIMAL CODE (startup) para gestionar soportes técnicos a diferentes empresas.</p>
 
@@ -268,7 +290,7 @@
                   </div>
 
                   <!-- Info Slide 3: Gestor de Lavanderías SaaS -->
-                  <div class="project-info-slide" data-index="2">
+                  <div class="project-info-slide" data-index="3">
                     <h3 class="carousel-title" data-i18n="projects.items.Lavanderia.title">Gestor de Lavanderías SaaS</h3>
                     <p class="carousel-desc" data-i18n="projects.items.Lavanderia.description">Plataforma SaaS para la administración integral de negocios de lavandería, control de pedidos en tiempo real, seguimiento de turnos, métricas financieras y gestión de clientes.</p>
 
