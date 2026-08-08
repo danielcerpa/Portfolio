@@ -55,7 +55,7 @@ const translations = {
         },
         DataForge: {
           title: "Data Forge",
-          description: "Herramienta de ETL y procesamiento de datos diseñada para la extracción, transformación y carga eficiente a gran escala."
+          description: "Aplicacion web que permite visualizar, editar y limpiar archivos .CSV y .XLSX. Además permite re-exportar los archivos en diferentes formatos."
         }
       }
     },
@@ -121,7 +121,7 @@ const translations = {
         },
         DataForge: {
           title: "Data Forge",
-          description: "ETL and data processing tool designed for efficient extraction, transformation, and loading of large-scale data."
+          description: "Web application that allows to visualize, edit and clean .CSV and .XLSX files. It also allows to re-export the files in different formats."
         }
       }
     },
