@@ -347,16 +347,31 @@ function initSkillsHover() {
 function initInteractiveGrid() {
   const root = document.documentElement;
   const homeSec = document.getElementById('home');
+  if (!homeSec) return;
+
+  const spotlight = homeSec.querySelector('.bg-spotlight');
+  let isHomeVisible = true;
+
+  // Disable spotlight calculations and repaints when home section is not in viewport
+  if (typeof IntersectionObserver !== 'undefined') {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHomeVisible = entry.isIntersecting;
+        if (spotlight) {
+          spotlight.style.display = isHomeVisible ? 'block' : 'none';
+        }
+      });
+    }, { threshold: 0 });
+    observer.observe(homeSec);
+  }
   
   window.addEventListener('mousemove', (e) => {
-    if (homeSec) {
-      const rect = homeSec.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      root.style.setProperty('--mouse-x', x + 'px');
-      root.style.setProperty('--mouse-y', y + 'px');
+    if (isHomeVisible) {
+      // Use pageX and pageY directly to avoid layout-thrashing getBoundingClientRect() calls
+      root.style.setProperty('--mouse-x', e.pageX + 'px');
+      root.style.setProperty('--mouse-y', e.pageY + 'px');
     }
-  });
+  }, { passive: true });
 
   // Magnetic Hover states for interactive elements (Anime.js)
   const interactables = document.querySelectorAll('.cv-download-btn, .navbar-link, .modern-contact-card');

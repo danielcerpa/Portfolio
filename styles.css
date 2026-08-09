@@ -86,6 +86,8 @@ body {
   z-index: 0;
   -webkit-mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), black 15%, transparent 100%);
   mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), black 15%, transparent 100%);
+  will-change: mask-image, -webkit-mask-image;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Layer 3: Rainbow Animated Glowing SVG Tapestry Mask */
@@ -107,6 +109,8 @@ body {
   mask-image: url('./public/tapiz/tapestry-mask.svg');
   -webkit-mask-size: 240px 240px;
   mask-size: 240px 240px;
+  will-change: background-position;
+  transform: translate3d(0, 0, 0);
 }
 
 @keyframes rainbowShift {
