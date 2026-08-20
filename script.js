@@ -14,6 +14,7 @@ const translations = {
       description: "<p>Soy un Ingeniero de Sistemas enfocado en el desarrollo web y el análisis de datos. Me gusta crear aplicaciones y soluciones efectivas que resuelvan problemas cotidianos en el mundo laboral.</p><p>Mis habilidades se centran en el desarrollo vanilla (<span class=\"tech-highlight tech-html\">HTML</span>, <span class=\"tech-highlight tech-css\">CSS</span>, <span class=\"tech-highlight tech-js\">JavaScript</span> y múltiples librerías) para lograr interfaces mas fluidas y responsivas que otras personas puedan comprender facilmente, complementándome con frameworks como <span class=\"tech-highlight tech-react\">React</span> y <span class=\"tech-highlight tech-next\">Next.js</span>.</p><p>Para el análisis de datos me gusta trabajar con <span class=\"tech-highlight tech-python\">Python</span> y su ecosistema de librerías como <span class=\"tech-highlight tech-pandas\">Pandas</span>, <span class=\"tech-highlight tech-numpy\">NumPy</span>, <span class=\"tech-highlight tech-matplotlib\">Matplotlib</span> y <span class=\"tech-highlight tech-duckdb\">DuckDB</span>. En bases de datos trabajo con <span class=\"tech-highlight tech-postgres\">PostgreSQL</span> y <span class=\"tech-highlight tech-mysql\">MySQL</span> (especializándome en este último).</p>"
     },
     welcome: {
+      status_badge: "Disponible para nuevos proyectos",
       title: "FULLSTACK DEVELOPER",
       badge: "Fullstack Specialist",
       projects: "Proyectos",
@@ -80,6 +81,7 @@ const translations = {
       description: "<p>I am a Systems Engineer focused on web development and data analysis. I like creating effective applications and solutions that solve everyday problems in the workplace.</p><p>My skills are centered on vanilla development (<span class=\"tech-highlight tech-html\">HTML</span>, <span class=\"tech-highlight tech-css\">CSS</span>, <span class=\"tech-highlight tech-js\">JavaScript</span> and multiple libraries) to achieve more fluid and responsive interfaces that others can easily understand, complemented by frameworks like <span class=\"tech-highlight tech-react\">React</span> and <span class=\"tech-highlight tech-next\">Next.js</span>.</p><p>For data analysis, I like working with <span class=\"tech-highlight tech-python\">Python</span> and its ecosystem of libraries such as <span class=\"tech-highlight tech-pandas\">Pandas</span>, <span class=\"tech-highlight tech-numpy\">NumPy</span>, <span class=\"tech-highlight tech-matplotlib\">Matplotlib</span> and <span class=\"tech-highlight tech-duckdb\">DuckDB</span>. In databases, I work with <span class=\"tech-highlight tech-postgres\">PostgreSQL</span> and <span class=\"tech-highlight tech-mysql\">MySQL</span> (specializing in the latter).</p>"
     },
     welcome: {
+      status_badge: "Available for new projects",
       title: "FULLSTACK DEVELOPER",
       badge: "Fullstack Specialist",
       projects: "Projects",
@@ -328,7 +330,7 @@ function initSkillsHover() {
   });
 }
 
-// 4. Interactive Grid Logic (Optimized, GPU-isolated & rAF throttled)
+// 4. Interactive Grid Logic (Fluid LERP Inertial Physics)
 function initInteractiveGrid() {
   const homeSec = document.getElementById('home');
   if (!homeSec) return;
@@ -341,9 +343,11 @@ function initInteractiveGrid() {
   if (!isFinePointer) return;
 
   let isHomeVisible = true;
-  let rafId = null;
-  let mouseX = -500;
-  let mouseY = -500;
+  let targetX = -500;
+  let targetY = -500;
+  let currentX = -500;
+  let currentY = -500;
+  let isLoopRunning = false;
 
   // Disable spotlight calculations when home section is not in viewport
   if (typeof IntersectionObserver !== 'undefined') {
@@ -351,25 +355,59 @@ function initInteractiveGrid() {
       entries.forEach(entry => {
         isHomeVisible = entry.isIntersecting;
         spotlight.style.display = isHomeVisible ? 'block' : 'none';
+        if (isHomeVisible && !isLoopRunning) {
+          startLoop();
+        }
       });
     }, { threshold: 0 });
     observer.observe(homeSec);
   }
 
-  const updateSpotlight = () => {
-    spotlight.style.setProperty('--mouse-x', mouseX + 'px');
-    spotlight.style.setProperty('--mouse-y', mouseY + 'px');
-    rafId = null;
-  };
+  function lerp(start, end, factor) {
+    return start + (end - start) * factor;
+  }
+
+  function tick() {
+    if (!isHomeVisible) {
+      isLoopRunning = false;
+      return;
+    }
+
+    currentX = lerp(currentX, targetX, 0.12);
+    currentY = lerp(currentY, targetY, 0.12);
+
+    spotlight.style.setProperty('--mouse-x', currentX.toFixed(2) + 'px');
+    spotlight.style.setProperty('--mouse-y', currentY.toFixed(2) + 'px');
+
+    const dx = Math.abs(targetX - currentX);
+    const dy = Math.abs(targetY - currentY);
+
+    if (dx > 0.1 || dy > 0.1) {
+      requestAnimationFrame(tick);
+    } else {
+      isLoopRunning = false;
+    }
+  }
+
+  function startLoop() {
+    if (!isLoopRunning) {
+      isLoopRunning = true;
+      requestAnimationFrame(tick);
+    }
+  }
   
   homeSec.addEventListener('mousemove', (e) => {
     if (!isHomeVisible) return;
-    mouseX = e.pageX;
-    mouseY = e.pageY;
-    if (!rafId) {
-      rafId = requestAnimationFrame(updateSpotlight);
-    }
+    targetX = e.pageX;
+    targetY = e.pageY;
+    startLoop();
   }, { passive: true });
+
+  homeSec.addEventListener('mouseleave', () => {
+    targetX = -500;
+    targetY = -500;
+    startLoop();
+  });
 }
 
 // 5. Antigravity Animations (Anime.js + GSAP)
@@ -544,6 +582,17 @@ function initProjectsCarousel() {
       const descText = newDescEl.getAttribute('data-full-text') || newDescEl.textContent.trim();
       newDescEl.textContent = descText;
     }
+
+    // Update editorial counter
+    const counterCurrent = document.querySelector('.counter-current');
+    const counterTotal = document.querySelector('.counter-total');
+    if (counterCurrent) {
+      counterCurrent.textContent = String(currentProjectIndex + 1).padStart(2, '0');
+    }
+    if (counterTotal) {
+      counterTotal.textContent = String(totalProjects).padStart(2, '0');
+    }
+
     isTransitioning = false;
   }
 
