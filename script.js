@@ -398,11 +398,15 @@ function initInteractiveGrid() {
   if (!isFinePointer) return;
 
   let isHomeVisible = true;
-  let targetX = -500;
-  let targetY = -500;
-  let currentX = -500;
-  let currentY = -500;
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight * 0.45;
+  let currentX = targetX;
+  let currentY = targetY;
   let isLoopRunning = false;
+
+  // Set initial spotlight center position
+  spotlight.style.setProperty('--mouse-x', currentX.toFixed(2) + 'px');
+  spotlight.style.setProperty('--mouse-y', currentY.toFixed(2) + 'px');
 
   // Disable spotlight calculations when home section is not in viewport
   if (typeof IntersectionObserver !== 'undefined') {
@@ -451,18 +455,13 @@ function initInteractiveGrid() {
     }
   }
   
-  homeSec.addEventListener('mousemove', (e) => {
+  // Track mouse movement globally when over the page while home is visible
+  window.addEventListener('mousemove', (e) => {
     if (!isHomeVisible) return;
     targetX = e.pageX;
     targetY = e.pageY;
     startLoop();
   }, { passive: true });
-
-  homeSec.addEventListener('mouseleave', () => {
-    targetX = -500;
-    targetY = -500;
-    startLoop();
-  });
 }
 
 // 5. Antigravity Animations (Anime.js + GSAP)
