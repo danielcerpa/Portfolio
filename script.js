@@ -351,14 +351,22 @@ function initNavbar() {
   });
 }
 
-// 3. Skills Hover Tracker (Static grouped sections)
+// 3. Skills Hover Tracker (Seamless Continuous Tracking)
 function initSkillsHover() {
   const highlightEl = document.getElementById('highlightTech');
   if (!highlightEl) return;
 
   const cards = document.querySelectorAll('.modern-skill-card');
+  const skillsContainer = document.querySelector('.skills-container');
+  let resetTimeout = null;
+
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => {
+      if (resetTimeout) {
+        clearTimeout(resetTimeout);
+        resetTimeout = null;
+      }
+
       const skillName = card.getAttribute('data-skill') || null;
       const isSpecialized = card.getAttribute('data-specialized') === 'true';
       const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
@@ -374,6 +382,22 @@ function initSkillsHover() {
     });
 
     card.addEventListener('mouseleave', () => {
+      if (resetTimeout) clearTimeout(resetTimeout);
+      resetTimeout = setTimeout(() => {
+        currentHoveredSkill = null;
+        const t = translations[currentLang].skills;
+        highlightEl.textContent = t.default_hover;
+        const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
+        if (staticPrefixEl) {
+          staticPrefixEl.textContent = t.static_prefix;
+        }
+      }, 100);
+    });
+  });
+
+  if (skillsContainer) {
+    skillsContainer.addEventListener('mouseleave', () => {
+      if (resetTimeout) clearTimeout(resetTimeout);
       currentHoveredSkill = null;
       const t = translations[currentLang].skills;
       highlightEl.textContent = t.default_hover;
@@ -382,7 +406,7 @@ function initSkillsHover() {
         staticPrefixEl.textContent = t.static_prefix;
       }
     });
-  });
+  }
 }
 
 // 4. Interactive Grid Logic (Fluid LERP Inertial Physics)
