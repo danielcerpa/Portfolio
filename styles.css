@@ -389,7 +389,6 @@ section {
 
 .lang-btn:hover {
   background: rgba(0, 0, 0, 0.08);
-  border-color: var(--black-400);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
