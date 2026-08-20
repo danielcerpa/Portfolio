@@ -141,6 +141,7 @@ let currentHoveredSkill = null;
 
 // Initialize on DOM Loaded
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initNavbar();
   initLanguageSwitcher();
   initSkillsHover();
@@ -150,6 +151,62 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjectsCarousel();
   initCopyEmail();
 });
+
+// 0. Theme Management (Google Antigravity Dark/Light)
+let currentTheme = localStorage.getItem('portfolio-theme') || 
+  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('portfolio-theme', theme);
+
+  // Update theme toggle button attributes
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (themeToggleBtn) {
+    themeToggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+  }
+
+  // Update Navbar logo
+  const logoImg = document.querySelector('.navbar-logo .logo-img');
+  if (logoImg) {
+    logoImg.src = theme === 'dark' ? './public/DC.svg' : './public/DC black.svg';
+  }
+
+  // Update SVGs that adapt to light/dark mode
+  document.querySelectorAll('[data-theme-svg]').forEach(img => {
+    const type = img.getAttribute('data-theme-svg');
+    if (type === 'github') {
+      img.src = theme === 'dark' ? './public/github_dark.svg' : './public/github_light.svg';
+    } else if (type === 'react') {
+      img.src = theme === 'dark' ? './public/react_dark.svg' : './public/react_light.svg';
+    } else if (type === 'mysql') {
+      img.src = theme === 'dark' ? './public/mysql-icon-dark.svg' : './public/mysql-icon-light.svg';
+    } else if (type === 'php') {
+      img.src = theme === 'dark' ? './public/php_dark.svg' : './public/php.svg';
+    }
+  });
+}
+
+function initThemeToggle() {
+  applyTheme(currentTheme);
+
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+    });
+  }
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+      if (!localStorage.getItem('portfolio-theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+}
 
 // 1. Language Logic
 function applyLanguage(lang) {

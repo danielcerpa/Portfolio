@@ -46,6 +46,33 @@
   --mouse-y: -500px;
 }
 
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary: #09090b;
+  --bg-secondary: #121215;
+  --bg-tertiary: #18181b;
+
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  --accent-primary: #ffffff;
+  --accent-secondary: #a1a1aa;
+  --accent-primary-dim: rgba(255, 255, 255, 0.08);
+  --accent-secondary-dim: rgba(255, 255, 255, 0.05);
+
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  --card-shadow: 0px 8px 32px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0px 14px 48px rgba(0, 0, 0, 0.8);
+
+  --grid-light: rgba(255, 255, 255, 0.04);
+  --grid-dark: rgba(255, 255, 255, 0.12);
+  --track-bg: #27272a;
+  --nav-bg: rgba(9, 9, 11, 0.85);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -365,6 +392,52 @@ section {
   gap: 0.5rem;
 }
 
+/* THEME TOGGLE BUTTON */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--text-primary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0);
+}
+
+.theme-toggle-btn .sun-icon {
+  display: none;
+  color: #fbbc05; /* Google Yellow */
+}
+
+.theme-toggle-btn .moon-icon {
+  display: block;
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle-btn .moon-icon {
+  display: none;
+}
+
 /* LANGUAGE SWITCHER (Minimalist Antigravity Glass Pill) */
 .lang-btn {
   display: inline-flex;
@@ -412,6 +485,66 @@ section {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* DARK THEME COMPONENT TWEAKS */
+[data-theme="dark"] #home {
+  background-image: url('./public/tapiz/tapestry-dim.svg');
+  filter: invert(0.92) hue-rotate(180deg) brightness(0.7);
+}
+
+[data-theme="dark"] .bg-spotlight {
+  filter: none;
+}
+
+[data-theme="dark"] .skill-logo-wrapper {
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .modern-skill-card:hover .skill-logo-wrapper {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .disclaimer-badge {
+  background: #18181b !important;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .modern-contact-card {
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .modern-contact-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .primary-btn {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+[data-theme="dark"] .primary-btn:hover {
+  background-color: #e4e4e7;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .project-visual-slide {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .lang-btn,
+[data-theme="dark"] .theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .lang-btn:hover,
+[data-theme="dark"] .theme-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* WELCOME SECTION */

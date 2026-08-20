@@ -58,6 +58,24 @@
         </ul>
 
         <div class="navbar-controls">
+          <!-- Theme Toggle Button -->
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Cambiar tema">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
+
           <!-- Language Switcher (Minimalist Antigravity Glass Pill) -->
           <button id="langSwitcher" class="lang-btn" aria-label="Cambiar Idioma">
             <svg class="lang-globe-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -150,8 +168,8 @@
                   <div class="modern-skill-card" data-skill="CSS3"><div class="skill-logo-wrapper"><img src="./public/css.svg" alt="CSS3" class="skill-logo" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card specialized-skill" data-skill="JavaScript" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/javascript.svg" alt="JavaScript" class="skill-logo" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card" data-skill="TypeScript"><div class="skill-logo-wrapper"><img src="./public/typescript.svg" alt="TypeScript" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="React"><div class="skill-logo-wrapper"><img src="./public/react_light.svg" alt="React" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="Next.js"><div class="skill-logo-wrapper"><img src="./public/nextjs_icon_dark.svg" alt="Next.js" class="skill-logo" loading="lazy" decoding="async"></div></div>
+                  <div class="modern-skill-card" data-skill="React"><div class="skill-logo-wrapper"><img src="./public/react_light.svg" alt="React" class="skill-logo" data-theme-svg="react" loading="lazy" decoding="async"></div></div>
+                  <div class="modern-skill-card" data-skill="Next.js"><div class="skill-logo-wrapper"><img src="./public/nextjs_icon_dark.svg" alt="Next.js" class="skill-logo" data-theme-svg="nextjs" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card" data-skill="Bootstrap"><div class="skill-logo-wrapper"><img src="./public/bootstrap.svg" alt="Bootstrap" class="skill-logo" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card" data-skill="Vite"><div class="skill-logo-wrapper"><img src="./public/vite.svg" alt="Vite" class="skill-logo" loading="lazy" decoding="async"></div></div>
                 </div>
@@ -162,7 +180,7 @@
                 <h3 class="category-title" data-i18n="skills.backend">Backend</h3>
                 <div class="skills-grid">
                   <div class="modern-skill-card" data-skill="Node.js"><div class="skill-logo-wrapper"><img src="./public/nodejs.svg" alt="Node.js" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" loading="lazy" decoding="async"></div></div>
+                  <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" data-theme-svg="php" loading="lazy" decoding="async"></div></div>
                 </div>
               </div>
 
@@ -171,7 +189,7 @@
                 <h3 class="category-title" data-i18n="skills.databases">Bases de Datos</h3>
                 <div class="skills-grid">
                   <div class="modern-skill-card specialized-skill" data-skill="Python" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/python.svg" alt="Python" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card specialized-skill" data-skill="MySQL" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/mysql-icon-light.svg" alt="MySQL" class="skill-logo" loading="lazy" decoding="async"></div></div>
+                  <div class="modern-skill-card specialized-skill" data-skill="MySQL" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/mysql-icon-light.svg" alt="MySQL" class="skill-logo" data-theme-svg="mysql" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card" data-skill="PostgreSQL"><div class="skill-logo-wrapper"><img src="./public/postgresql.svg" alt="PostgreSQL" class="skill-logo" loading="lazy" decoding="async"></div></div>
                 </div>
               </div>
@@ -183,7 +201,7 @@
                   <div class="modern-skill-card" data-skill="Docker"><div class="skill-logo-wrapper"><img src="./public/docker.svg" alt="Docker" class="skill-logo" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card" data-skill="Linux"><div class="skill-logo-wrapper"><img src="./public/linux.svg" alt="Linux" class="skill-logo" loading="lazy" decoding="async"></div></div>
                   <div class="modern-skill-card" data-skill="Git"><div class="skill-logo-wrapper"><img src="./public/git.svg" alt="Git" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" loading="lazy" decoding="async"></div></div>
+                  <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" data-theme-svg="github" loading="lazy" decoding="async"></div></div>
                 </div>
               </div>
             </div>
@@ -287,7 +305,7 @@
                     <p class="carousel-desc" data-i18n="projects.items.DataForge.description">Herramienta de ETL y procesamiento de datos diseñada para la extracción, transformación y carga eficiente a gran escala.</p>
                     
                     <div class="carousel-tech-list">
-                      <div class="tech-icon" title="React"><img src="./public/react_light.svg" alt="React" loading="lazy" decoding="async"></div>
+                      <div class="tech-icon" title="React"><img src="./public/react_light.svg" alt="React" data-theme-svg="react" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Vite"><img src="./public/vite.svg" alt="Vite" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="JavaScript"><img src="./public/javascript.svg" alt="JavaScript" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Git"><img src="./public/git.svg" alt="Git" loading="lazy" decoding="async"></div>
@@ -304,8 +322,8 @@
                       <div class="tech-icon" title="CSS3"><img src="./public/css.svg" alt="CSS3" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Bootstrap"><img src="./public/bootstrap.svg" alt="Bootstrap" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="JavaScript"><img src="./public/javascript.svg" alt="JavaScript" loading="lazy" decoding="async"></div>
-                      <div class="tech-icon" title="PHP"><img src="./public/php.svg" alt="PHP" loading="lazy" decoding="async"></div>
-                      <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" loading="lazy" decoding="async"></div>
+                      <div class="tech-icon" title="PHP"><img src="./public/php.svg" alt="PHP" data-theme-svg="php" loading="lazy" decoding="async"></div>
+                      <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" data-theme-svg="mysql" loading="lazy" decoding="async"></div>
                     </div>
                   </div>
 
@@ -319,8 +337,8 @@
                       <div class="tech-icon" title="CSS3"><img src="./public/css.svg" alt="CSS3" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Bootstrap"><img src="./public/bootstrap.svg" alt="Bootstrap" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="JavaScript"><img src="./public/javascript.svg" alt="JavaScript" loading="lazy" decoding="async"></div>
-                      <div class="tech-icon" title="PHP"><img src="./public/php.svg" alt="PHP" loading="lazy" decoding="async"></div>
-                      <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" loading="lazy" decoding="async"></div>
+                      <div class="tech-icon" title="PHP"><img src="./public/php.svg" alt="PHP" data-theme-svg="php" loading="lazy" decoding="async"></div>
+                      <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" data-theme-svg="mysql" loading="lazy" decoding="async"></div>
                     </div>
                   </div>
 
@@ -335,7 +353,7 @@
                       <div class="tech-icon" title="JavaScript"><img src="./public/javascript.svg" alt="JavaScript" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Bootstrap"><img src="./public/bootstrap.svg" alt="Bootstrap" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Node.js"><img src="./public/nodejs.svg" alt="Node.js" loading="lazy" decoding="async"></div>
-                      <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" loading="lazy" decoding="async"></div>
+                      <div class="tech-icon" title="MySQL"><img src="./public/mysql-icon-light.svg" alt="MySQL" data-theme-svg="mysql" loading="lazy" decoding="async"></div>
                       <div class="tech-icon" title="Stripe"><img src="./public/stripe_wordmark.svg" alt="Stripe" loading="lazy" decoding="async"></div>
                     </div>
                   </div>
@@ -388,7 +406,7 @@
 
                   <!-- GitHub -->
                   <a href="https://github.com/danielcerpa" target="_blank" rel="noopener noreferrer" class="modern-contact-card" title="GitHub: github.com/danielcerpa" aria-label="GitHub">
-                    <img src="./public/github_light.svg" alt="GitHub" class="contact-icon-img" loading="lazy" decoding="async">
+                    <img src="./public/github_light.svg" alt="GitHub" class="contact-icon-img" data-theme-svg="github" loading="lazy" decoding="async">
                   </a>
 
                   <!-- LinkedIn -->
