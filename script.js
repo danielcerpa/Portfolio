@@ -156,16 +156,14 @@ function applyLanguage(lang) {
   currentLang = lang;
   const t = translations[lang];
 
-  // Update switcher UI classes
+  // Update switcher UI label and attributes
   const switcher = document.getElementById('langSwitcher');
   if (switcher) {
-    if (lang === 'en') {
-      switcher.classList.remove('is-es');
-      switcher.classList.add('is-en');
-    } else {
-      switcher.classList.remove('is-en');
-      switcher.classList.add('is-es');
+    const langCode = switcher.querySelector('.lang-code');
+    if (langCode) {
+      langCode.textContent = lang.toUpperCase();
     }
+    switcher.setAttribute('aria-label', lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish');
   }
 
   // Update element contents by data-i18n attribute
