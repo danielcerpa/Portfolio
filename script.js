@@ -227,37 +227,31 @@ function initNavbar() {
   const navbar = document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.navbar-link');
   const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+  const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
 
   let isScrollTicking = false;
-  const updateNavbarOnScroll = () => {
-    const navbarHeight = navbar ? navbar.offsetHeight : 70;
 
+  const updateNavbarOnScroll = () => {
+    const scrollY = window.scrollY;
+    
     // Glassmorphism shadow on scroll
-    if (window.scrollY > 20) {
-      navbar?.classList.add('navbar--scrolled');
-    } else {
-      navbar?.classList.remove('navbar--scrolled');
-    }
+    navbar?.classList.toggle('navbar--scrolled', scrollY > 20);
 
     // Active link highlighting
     let currentSection = 'home';
-    
-    // Check if user scrolled to bottom of page (select contact)
-    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+    const scrollBottom = window.innerHeight + scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+
+    if (scrollBottom >= docHeight - 60) {
       currentSection = 'contact';
     } else {
-      const offsets = sections.map((id) => {
-        const el = document.getElementById(id);
-        if (!el) return { id, top: Infinity };
-        return { id, top: el.getBoundingClientRect().top - navbarHeight - 40 };
-      });
-
-      const visible = offsets
-        .filter(({ top }) => top <= 0)
-        .sort((a, b) => b.top - a.top);
-
-      if (visible.length > 0) {
-        currentSection = visible[0].id;
+      const scrollPos = scrollY + 120;
+      for (let i = sectionElements.length - 1; i >= 0; i--) {
+        const el = sectionElements[i];
+        if (el.offsetTop <= scrollPos) {
+          currentSection = el.id;
+          break;
+        }
       }
     }
 
@@ -265,19 +259,17 @@ function initNavbar() {
       const sectionId = link.getAttribute('data-section');
       link.classList.toggle('navbar-link--active', sectionId === currentSection);
     });
+
+    isScrollTicking = false;
   };
 
-  const handleScroll = () => {
+  window.addEventListener('scroll', () => {
     if (!isScrollTicking) {
-      requestAnimationFrame(() => {
-        updateNavbarOnScroll();
-        isScrollTicking = false;
-      });
       isScrollTicking = true;
+      requestAnimationFrame(updateNavbarOnScroll);
     }
-  };
+  }, { passive: true });
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
   updateNavbarOnScroll(); // Initial run
 
   // Click scroll handler with exact navbar offset
@@ -292,14 +284,7 @@ function initNavbar() {
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
         const navbarHeight = navbar ? navbar.offsetHeight : 70;
-        let top = 0;
-        let el = targetEl;
-        while (el) {
-          top += el.offsetTop;
-          el = el.offsetParent;
-        }
-        const targetPosition = top - navbarHeight - 15;
-        
+        const targetPosition = targetEl.offsetTop - navbarHeight - 15;
         window.scrollTo({
           top: Math.max(0, targetPosition),
           behavior: 'smooth'
@@ -343,60 +328,48 @@ function initSkillsHover() {
   });
 }
 
-// 4. Interactive Grid Logic
+// 4. Interactive Grid Logic (Optimized, GPU-isolated & rAF throttled)
 function initInteractiveGrid() {
-  const root = document.documentElement;
   const homeSec = document.getElementById('home');
   if (!homeSec) return;
 
   const spotlight = homeSec.querySelector('.bg-spotlight');
-  let isHomeVisible = true;
+  if (!spotlight) return;
 
-  // Disable spotlight calculations and repaints when home section is not in viewport
+  // Only enable cursor spotlight on devices with fine pointer (mouse)
+  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!isFinePointer) return;
+
+  let isHomeVisible = true;
+  let rafId = null;
+  let mouseX = -500;
+  let mouseY = -500;
+
+  // Disable spotlight calculations when home section is not in viewport
   if (typeof IntersectionObserver !== 'undefined') {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         isHomeVisible = entry.isIntersecting;
-        if (spotlight) {
-          spotlight.style.display = isHomeVisible ? 'block' : 'none';
-        }
+        spotlight.style.display = isHomeVisible ? 'block' : 'none';
       });
     }, { threshold: 0 });
     observer.observe(homeSec);
   }
+
+  const updateSpotlight = () => {
+    spotlight.style.setProperty('--mouse-x', mouseX + 'px');
+    spotlight.style.setProperty('--mouse-y', mouseY + 'px');
+    rafId = null;
+  };
   
-  window.addEventListener('mousemove', (e) => {
-    if (isHomeVisible) {
-      // Use pageX and pageY directly to avoid layout-thrashing getBoundingClientRect() calls
-      root.style.setProperty('--mouse-x', e.pageX + 'px');
-      root.style.setProperty('--mouse-y', e.pageY + 'px');
+  homeSec.addEventListener('mousemove', (e) => {
+    if (!isHomeVisible) return;
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+    if (!rafId) {
+      rafId = requestAnimationFrame(updateSpotlight);
     }
   }, { passive: true });
-
-  // Magnetic Hover states for interactive elements (Anime.js)
-  const interactables = document.querySelectorAll('.cv-download-btn, .navbar-link, .modern-contact-card');
-  interactables.forEach(el => {
-    el.addEventListener('mouseenter', (e) => {
-      if (typeof anime !== 'undefined') {
-        anime({
-          targets: el,
-          scale: 1.05,
-          duration: 300,
-          easing: 'easeOutElastic(1, .8)'
-        });
-      }
-    });
-    el.addEventListener('mouseleave', (e) => {
-      if (typeof anime !== 'undefined') {
-        anime({
-          targets: el,
-          scale: 1,
-          duration: 300,
-          easing: 'easeOutElastic(1, .8)'
-        });
-      }
-    });
-  });
 }
 
 // 5. Antigravity Animations (Anime.js + GSAP)
@@ -405,40 +378,45 @@ function initAnimations() {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section reveal animations
+    // Section reveal and exit animations
     const sections = document.querySelectorAll('section');
     sections.forEach(sec => {
-      if (sec.id === 'home') return; // Handled by Anime.js
+      if (sec.id === 'home') return;
       const targetChild = sec.firstElementChild || sec;
       gsap.fromTo(targetChild, 
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 35 },
         {
           opacity: 1, 
           y: 0,
-          duration: 0.8,
+          duration: 0.75,
           ease: "power2.out",
           scrollTrigger: {
             trigger: sec,
-            start: "top 85%",
-            end: "bottom top",
-            toggleActions: "play none play reverse"
+            start: "top 88%",
+            end: "bottom 12%",
+            toggleActions: "play reverse play reverse"
           }
         }
       );
     });
 
-    // Project Cards stagger
-    gsap.from('.project-row', {
-      scrollTrigger: {
-        trigger: '.projects-list',
-        start: 'top 80%'
-      },
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: 'back.out(1.7)'
-    });
+    // Projects visual row entrance and exit
+    gsap.fromTo('.project-visual-slide',
+      { opacity: 0.3, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#projects',
+          start: 'top 85%',
+          end: 'bottom 15%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
   }
 
   // Initial Load Animations (Typing effect + Anime.js stagger)
@@ -569,51 +547,76 @@ function initProjectsCarousel() {
     isTransitioning = false;
   }
 
-  // Cursor tracking for hover button inside each visual slide card
+  // Cursor tracking for hover button inside each visual slide card (GPU Accelerated)
   visualSlides.forEach((slide) => {
     const btn = slide.querySelector('.carousel-hover-btn');
     if (!btn) return;
 
-    slide.addEventListener('mousemove', (e) => {
-      const rect = slide.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    let isHovering = false;
+    let rect = null;
+    let btnRaf = null;
+    let targetX = 0;
+    let targetY = 0;
 
-      btn.style.left = `${x}px`;
-      btn.style.top = `${y}px`;
+    const updateBtnPos = () => {
+      if (isHovering) {
+        btn.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
+      }
+      btnRaf = null;
+    };
+
+    slide.addEventListener('mouseenter', () => {
+      rect = slide.getBoundingClientRect();
+      isHovering = true;
       slide.classList.add('is-hovered');
+    });
+
+    slide.addEventListener('mousemove', (e) => {
+      if (!rect) rect = slide.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+
+      if (!btnRaf) {
+        btnRaf = requestAnimationFrame(updateBtnPos);
+      }
 
       // Split hover logic for projects with both website and repository
       const linkLeft = slide.getAttribute('data-link-left');
       const linkRight = slide.getAttribute('data-link-right');
       if (linkLeft && linkRight) {
-        const isLeft = x < rect.width / 2;
+        const isLeft = targetX < rect.width / 2;
         const targetLink = isLeft ? linkLeft : linkRight;
         btn.setAttribute('href', targetLink);
 
         const span = btn.querySelector('span');
         const svg = btn.querySelector('svg');
         if (isLeft) {
-          if (span) span.textContent = 'GitHub';
-          if (svg) {
+          if (span && span.textContent !== 'GitHub') span.textContent = 'GitHub';
+          if (svg && !svg.getAttribute('data-is-github')) {
+            svg.setAttribute('data-is-github', 'true');
             svg.innerHTML = `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>`;
           }
         } else {
-          if (span) span.textContent = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
-          if (svg) {
+          const visitText = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
+          if (span && span.textContent !== visitText) span.textContent = visitText;
+          if (svg && svg.getAttribute('data-is-github')) {
+            svg.removeAttribute('data-is-github');
             svg.innerHTML = `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`;
           }
         }
       }
-    });
+    }, { passive: true });
 
     slide.addEventListener('mouseleave', () => {
+      isHovering = false;
+      rect = null;
       slide.classList.remove('is-hovered');
       // Reset button default text/icon when leaving
       const span = btn.querySelector('span');
       const svg = btn.querySelector('svg');
       if (span) span.textContent = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
       if (svg) {
+        svg.removeAttribute('data-is-github');
         svg.innerHTML = `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`;
       }
     });

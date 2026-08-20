@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
 :root {
   color-scheme: light;
   --black-50: #fafafa;
@@ -36,7 +34,7 @@
   --grid-light: rgba(0, 0, 0, 0.04);
   --grid-dark: rgba(0, 0, 0, 0.15);
   --track-bg: var(--black-200);
-  --nav-bg: rgba(250, 250, 250, 0.7);
+  --nav-bg: rgba(250, 250, 250, 0.85);
   
   --font-main: 'Inter', sans-serif;
   --font-heading: 'Outfit', sans-serif;
@@ -44,8 +42,8 @@
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 0.2s ease;
 
-  --mouse-x: -100px;
-  --mouse-y: -100px;
+  --mouse-x: -500px;
+  --mouse-y: -500px;
 }
 
 * {
@@ -68,6 +66,8 @@ body {
   min-height: 100vh;
   position: relative;
   width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .app {
@@ -84,8 +84,9 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   pointer-events: none;
   z-index: 0;
-  -webkit-mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), black 15%, transparent 100%);
-  mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), black 15%, transparent 100%);
+  contain: strict;
+  -webkit-mask-image: radial-gradient(circle 350px at var(--mouse-x, -500px) var(--mouse-y, -500px), black 15%, transparent 100%);
+  mask-image: radial-gradient(circle 350px at var(--mouse-x, -500px) var(--mouse-y, -500px), black 15%, transparent 100%);
   will-change: mask-image, -webkit-mask-image;
   transform: translate3d(0, 0, 0);
 }
@@ -246,16 +247,14 @@ section {
   z-index: 100;
   padding: 0.75rem 0;
   background: transparent;
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
   box-shadow: 0 2px 0px transparent, 0 4px 0px transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .navbar--scrolled {
   background: var(--nav-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 2px 0px var(--border-subtle), 0 4px 0px var(--black-950);
 }
 
@@ -849,66 +848,53 @@ section {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 16px rgba(255, 255, 255, 0.3);
 }
 
-/* SPECIALIZED SKILLS - GLOWING COLORFUL AURA SHADOWS */
+/* SPECIALIZED SKILLS - GLOWING COLORFUL AURA SHADOWS (GPU Accelerated) */
 .modern-skill-card[data-specialized="true"] .skill-logo-wrapper {
   position: relative;
-  transition: box-shadow 0.4s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modern-skill-card[data-specialized="true"] .skill-logo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+  animation: aura-pulse 3s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
 }
 
 /* 1. JavaScript: Yellow Glow Aura */
-.modern-skill-card[data-skill="JavaScript"] .skill-logo-wrapper {
-  box-shadow: 0 0 22px rgba(247, 223, 30, 0.75), 0 0 38px rgba(247, 223, 30, 0.4), 0 4px 14px rgba(0, 0, 0, 0.2);
-  animation: aura-pulse-js 3s ease-in-out infinite alternate;
-}
-
-.modern-skill-card[data-skill="JavaScript"]:hover .skill-logo-wrapper {
-  box-shadow: 0 0 32px rgba(247, 223, 30, 0.95), 0 0 52px rgba(247, 223, 30, 0.6), 0 8px 24px rgba(0, 0, 0, 0.3);
+.modern-skill-card[data-skill="JavaScript"] .skill-logo-wrapper::before {
+  box-shadow: 0 0 20px rgba(247, 223, 30, 0.75), 0 0 36px rgba(247, 223, 30, 0.4);
 }
 
 /* 2. Python: Blue & Yellow Dual Glow Aura */
-.modern-skill-card[data-skill="Python"] .skill-logo-wrapper {
-  box-shadow: -5px -5px 24px rgba(55, 118, 171, 0.85), 5px 5px 24px rgba(255, 212, 56, 0.75), 0 4px 14px rgba(0, 0, 0, 0.2);
-  animation: aura-pulse-python 3s ease-in-out infinite alternate;
-}
-
-.modern-skill-card[data-skill="Python"]:hover .skill-logo-wrapper {
-  box-shadow: -8px -8px 34px rgba(55, 118, 171, 0.95), 8px 8px 34px rgba(255, 212, 56, 0.9), 0 8px 24px rgba(0, 0, 0, 0.3);
+.modern-skill-card[data-skill="Python"] .skill-logo-wrapper::before {
+  box-shadow: -5px -5px 22px rgba(55, 118, 171, 0.85), 5px 5px 22px rgba(255, 212, 56, 0.75);
 }
 
 /* 3. MySQL: Cyan & Deep Blue Glow Aura */
-.modern-skill-card[data-skill="MySQL"] .skill-logo-wrapper {
-  box-shadow: 0 0 24px rgba(0, 160, 214, 0.85), 0 0 40px rgba(0, 97, 138, 0.55), 0 4px 14px rgba(0, 0, 0, 0.2);
-  animation: aura-pulse-mysql 3s ease-in-out infinite alternate;
+.modern-skill-card[data-skill="MySQL"] .skill-logo-wrapper::before {
+  box-shadow: 0 0 22px rgba(0, 160, 214, 0.85), 0 0 38px rgba(0, 97, 138, 0.55);
 }
 
-.modern-skill-card[data-skill="MySQL"]:hover .skill-logo-wrapper {
-  box-shadow: 0 0 36px rgba(0, 160, 214, 0.95), 0 0 58px rgba(0, 97, 138, 0.7), 0 8px 24px rgba(0, 0, 0, 0.3);
+.modern-skill-card[data-specialized="true"]:hover .skill-logo-wrapper::before {
+  opacity: 1;
+  transform: scale(1.12);
 }
 
-@keyframes aura-pulse-js {
+@keyframes aura-pulse {
   0% {
-    box-shadow: 0 0 16px rgba(247, 223, 30, 0.6), 0 0 28px rgba(247, 223, 30, 0.3), 0 4px 14px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    opacity: 0.65;
   }
   100% {
-    box-shadow: 0 0 26px rgba(247, 223, 30, 0.9), 0 0 44px rgba(247, 223, 30, 0.5), 0 4px 14px rgba(0, 0, 0, 0.2);
-  }
-}
-
-@keyframes aura-pulse-python {
-  0% {
-    box-shadow: -4px -4px 18px rgba(55, 118, 171, 0.7), 4px 4px 18px rgba(255, 212, 56, 0.6), 0 4px 14px rgba(0, 0, 0, 0.2);
-  }
-  100% {
-    box-shadow: -7px -7px 28px rgba(55, 118, 171, 0.95), 7px 7px 28px rgba(255, 212, 56, 0.85), 0 4px 14px rgba(0, 0, 0, 0.2);
-  }
-}
-
-@keyframes aura-pulse-mysql {
-  0% {
-    box-shadow: 0 0 18px rgba(0, 160, 214, 0.7), 0 0 30px rgba(0, 97, 138, 0.45), 0 4px 14px rgba(0, 0, 0, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 28px rgba(0, 160, 214, 0.95), 0 0 46px rgba(0, 97, 138, 0.65), 0 4px 14px rgba(0, 0, 0, 0.2);
+    transform: scale(1.06);
+    opacity: 0.95;
   }
 }
 
@@ -953,6 +939,8 @@ section {
   opacity: 0.8;
   animation: rainbowGlow 6s linear infinite;
   z-index: 0;
+  transform: translate3d(0, 0, 0);
+  will-change: background-position;
 }
 
 @keyframes rainbowGlow {
@@ -1070,12 +1058,12 @@ section {
 .bg-gradient-2 { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
 .bg-gradient-3 { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
 
-/* Hover Button following cursor on Project Visual Slide */
+/* Hover Button following cursor on Project Visual Slide (GPU accelerated) */
 .carousel-hover-btn {
   position: absolute;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%) scale(0.85);
+  transform: translate3d(0, 0, 0) translate(-50%, -50%) scale(0.85);
   background-color: #ffffff;
   color: #000000;
   padding: 0.75rem 1.4rem;
@@ -1089,18 +1077,17 @@ section {
   gap: 0.5rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+  transition: opacity 0.2s ease, visibility 0.2s;
   pointer-events: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   z-index: 10;
-  will-change: left, top, transform;
+  will-change: transform, opacity;
   white-space: nowrap;
 }
 
 .project-visual-slide.is-hovered .carousel-hover-btn {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, -50%) scale(1);
 }
 
 .carousel-hover-btn::after {
@@ -1171,7 +1158,7 @@ section {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .carousel-btn:hover {
@@ -1623,7 +1610,7 @@ section {
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     flex: 1;
     max-width: 200px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
