@@ -972,54 +972,36 @@ section {
   filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.25));
 }
 
-/* Subtle glowing colorful aura behind icons on hover and for specialized skills */
-.modern-skill-card::before {
+/* SPECIALIZED SKILLS ONLY: Glowing Colorful Ambient Aura (JavaScript, Python, MySQL) */
+.modern-skill-card[data-specialized="true"]::before {
   content: '';
   position: absolute;
-  inset: -6px;
+  inset: -4px;
   border-radius: 50%;
   pointer-events: none;
   z-index: -1;
-  opacity: 0;
-  filter: blur(14px);
-  transform: scale(0.6);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-.modern-skill-card:hover::before {
-  opacity: 0.85;
-  transform: scale(1.2);
-}
-
-/* Specific ambient glow tints */
-.modern-skill-card[data-skill="JavaScript"]::before { background: rgba(247, 223, 30, 0.7); }
-.modern-skill-card[data-skill="TypeScript"]::before { background: rgba(49, 120, 198, 0.65); }
-.modern-skill-card[data-skill="Python"]::before { background: rgba(56, 128, 255, 0.65); }
-.modern-skill-card[data-skill="MySQL"]::before { background: rgba(0, 117, 143, 0.7); }
-.modern-skill-card[data-skill="React"]::before { background: rgba(97, 218, 251, 0.65); }
-.modern-skill-card[data-skill="Next.js"]::before { background: rgba(120, 120, 120, 0.5); }
-.modern-skill-card[data-skill="HTML5"]::before { background: rgba(227, 76, 38, 0.6); }
-.modern-skill-card[data-skill="CSS3"]::before { background: rgba(38, 77, 228, 0.6); }
-.modern-skill-card[data-skill="Bootstrap"]::before { background: rgba(121, 82, 179, 0.65); }
-.modern-skill-card[data-skill="Vite"]::before { background: rgba(189, 52, 254, 0.65); }
-.modern-skill-card[data-skill="Node.js"]::before { background: rgba(104, 160, 99, 0.65); }
-.modern-skill-card[data-skill="PHP"]::before { background: rgba(119, 123, 179, 0.65); }
-.modern-skill-card[data-skill="PostgreSQL"]::before { background: rgba(51, 103, 145, 0.65); }
-.modern-skill-card[data-skill="Docker"]::before { background: rgba(36, 150, 237, 0.65); }
-.modern-skill-card[data-skill="Linux"]::before { background: rgba(252, 209, 22, 0.6); }
-.modern-skill-card[data-skill="Git"]::before { background: rgba(240, 80, 50, 0.65); }
-.modern-skill-card[data-skill="GitHub"]::before { background: rgba(140, 140, 140, 0.5); }
-
-/* SPECIALIZED SKILLS: Gentle continuous pulse */
-.modern-skill-card[data-specialized="true"]::before {
   opacity: 0.55;
+  filter: blur(14px);
   transform: scale(0.95);
   animation: aura-pulse 3s ease-in-out infinite alternate;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .modern-skill-card[data-specialized="true"]:hover::before {
   opacity: 1;
   transform: scale(1.3);
+}
+
+.modern-skill-card[data-specialized="true"][data-skill="JavaScript"]::before { 
+  background: rgba(247, 223, 30, 0.75); 
+}
+
+.modern-skill-card[data-specialized="true"][data-skill="Python"]::before { 
+  background: radial-gradient(circle, rgba(56, 128, 255, 0.75) 45%, rgba(255, 212, 56, 0.7) 85%); 
+}
+
+.modern-skill-card[data-specialized="true"][data-skill="MySQL"]::before { 
+  background: rgba(0, 117, 143, 0.75); 
 }
 
 @keyframes aura-pulse {
