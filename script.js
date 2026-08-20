@@ -596,69 +596,97 @@ function initProjectsCarousel() {
     isTransitioning = false;
   }
 
-  // Cursor tracking for hover button inside each visual slide card (GPU Accelerated)
+  // Cursor tracking for hover button inside each visual slide card (GPU Accelerated & Scroll-proof)
   visualSlides.forEach((slide) => {
     const btn = slide.querySelector('.carousel-hover-btn');
     if (!btn) return;
 
     let isHovering = false;
-    let rect = null;
     let btnRaf = null;
-    let targetX = 0;
-    let targetY = 0;
+    let lastClientX = 0;
+    let lastClientY = 0;
 
     const updateBtnPos = () => {
       if (isHovering) {
-        btn.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
+        const rect = slide.getBoundingClientRect();
+        // Check if cursor is still within the slide bounds after scroll
+        if (
+          lastClientX < rect.left ||
+          lastClientX > rect.right ||
+          lastClientY < rect.top ||
+          lastClientY > rect.bottom
+        ) {
+          slide.classList.remove('is-hovered');
+          isHovering = false;
+          btnRaf = null;
+          return;
+        }
+
+        const x = lastClientX - rect.left;
+        const y = lastClientY - rect.top;
+        btn.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+
+        // Split hover logic for projects with both website and repository
+        const linkLeft = slide.getAttribute('data-link-left');
+        const linkRight = slide.getAttribute('data-link-right');
+        if (linkLeft && linkRight) {
+          const isLeft = x < rect.width / 2;
+          const targetLink = isLeft ? linkLeft : linkRight;
+          btn.setAttribute('href', targetLink);
+
+          const span = btn.querySelector('span');
+          const svg = btn.querySelector('svg');
+          if (isLeft) {
+            if (span && span.textContent !== 'GitHub') span.textContent = 'GitHub';
+            if (svg && !svg.getAttribute('data-is-github')) {
+              svg.setAttribute('data-is-github', 'true');
+              svg.innerHTML = `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>`;
+            }
+          } else {
+            const visitText = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
+            if (span && span.textContent !== visitText) span.textContent = visitText;
+            if (svg && svg.getAttribute('data-is-github')) {
+              svg.removeAttribute('data-is-github');
+              svg.innerHTML = `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`;
+            }
+          }
+        }
       }
       btnRaf = null;
     };
 
-    slide.addEventListener('mouseenter', () => {
-      rect = slide.getBoundingClientRect();
+    slide.addEventListener('mouseenter', (e) => {
       isHovering = true;
+      lastClientX = e.clientX;
+      lastClientY = e.clientY;
       slide.classList.add('is-hovered');
+      if (!btnRaf) {
+        btnRaf = requestAnimationFrame(updateBtnPos);
+      }
     });
 
     slide.addEventListener('mousemove', (e) => {
-      if (!rect) rect = slide.getBoundingClientRect();
-      targetX = e.clientX - rect.left;
-      targetY = e.clientY - rect.top;
+      lastClientX = e.clientX;
+      lastClientY = e.clientY;
+      if (!isHovering) {
+        isHovering = true;
+        slide.classList.add('is-hovered');
+      }
 
       if (!btnRaf) {
         btnRaf = requestAnimationFrame(updateBtnPos);
       }
+    }, { passive: true });
 
-      // Split hover logic for projects with both website and repository
-      const linkLeft = slide.getAttribute('data-link-left');
-      const linkRight = slide.getAttribute('data-link-right');
-      if (linkLeft && linkRight) {
-        const isLeft = targetX < rect.width / 2;
-        const targetLink = isLeft ? linkLeft : linkRight;
-        btn.setAttribute('href', targetLink);
-
-        const span = btn.querySelector('span');
-        const svg = btn.querySelector('svg');
-        if (isLeft) {
-          if (span && span.textContent !== 'GitHub') span.textContent = 'GitHub';
-          if (svg && !svg.getAttribute('data-is-github')) {
-            svg.setAttribute('data-is-github', 'true');
-            svg.innerHTML = `<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>`;
-          }
-        } else {
-          const visitText = currentLang === 'es' ? 'Visitar Sitio' : 'Visit Site';
-          if (span && span.textContent !== visitText) span.textContent = visitText;
-          if (svg && svg.getAttribute('data-is-github')) {
-            svg.removeAttribute('data-is-github');
-            svg.innerHTML = `<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>`;
-          }
-        }
+    // Ensure button repositioning remains accurate when scrolling over the slide
+    window.addEventListener('scroll', () => {
+      if (isHovering && !btnRaf) {
+        btnRaf = requestAnimationFrame(updateBtnPos);
       }
     }, { passive: true });
 
     slide.addEventListener('mouseleave', () => {
       isHovering = false;
-      rect = null;
       slide.classList.remove('is-hovered');
       // Reset button default text/icon when leaving
       const span = btn.querySelector('span');
