@@ -489,7 +489,7 @@ section {
 
 /* DARK THEME COMPONENT TWEAKS */
 [data-theme="dark"] #home {
-  background-image: url('./public/tapiz/tapestry-dim-dark.svg');
+  background-image: none;
 }
 
 [data-theme="dark"] .disclaimer-badge {
