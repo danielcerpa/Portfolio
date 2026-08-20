@@ -416,7 +416,7 @@ function initAnimations() {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section reveal and exit animations
+    // Section reveal and exit animations (accurately bounded to full section visibility)
     const sections = document.querySelectorAll('section');
     sections.forEach(sec => {
       if (sec.id === 'home') return;
@@ -431,30 +431,19 @@ function initAnimations() {
           scrollTrigger: {
             trigger: sec,
             start: "top 88%",
-            end: "bottom 12%",
-            toggleActions: "play reverse play reverse"
+            end: "bottom top",
+            toggleActions: "play reverse play reverse",
+            fastScrollEnd: true
           }
         }
       );
     });
 
-    // Projects visual row entrance and exit
-    gsap.fromTo('.project-visual-slide',
-      { opacity: 0.3, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#projects',
-          start: 'top 85%',
-          end: 'bottom 15%',
-          toggleActions: 'play reverse play reverse'
-        }
-      }
-    );
+    // Refresh ScrollTrigger to compute exact coordinates after layout & assets settle
+    ScrollTrigger.refresh();
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
   }
 
   // Initial Load Animations (Typing effect + Anime.js stagger)
