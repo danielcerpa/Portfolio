@@ -153,17 +153,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 0. Theme Management (Google Antigravity Dark/Light)
-let currentTheme = localStorage.getItem('portfolio-theme') || 
-  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+let currentTheme = localStorage.getItem('portfolio-theme') || 'light';
 
 function applyTheme(theme) {
   currentTheme = theme;
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('portfolio-theme', theme);
 
-  // Update theme toggle button attributes
+  // Update theme switch attributes
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   if (themeToggleBtn) {
+    themeToggleBtn.setAttribute('data-theme-state', theme);
+    themeToggleBtn.setAttribute('aria-checked', theme === 'dark' ? 'true' : 'false');
     themeToggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
   }
 
@@ -198,14 +199,6 @@ function initThemeToggle() {
       applyTheme(nextTheme);
     });
   }
-
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (!localStorage.getItem('portfolio-theme')) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
-    });
-  }
 }
 
 // 1. Language Logic
@@ -213,13 +206,11 @@ function applyLanguage(lang) {
   currentLang = lang;
   const t = translations[lang];
 
-  // Update switcher UI label and attributes
+  // Update language switch attributes
   const switcher = document.getElementById('langSwitcher');
   if (switcher) {
-    const langCode = switcher.querySelector('.lang-code');
-    if (langCode) {
-      langCode.textContent = lang.toUpperCase();
-    }
+    switcher.setAttribute('data-lang-state', lang);
+    switcher.setAttribute('aria-checked', lang === 'en' ? 'true' : 'false');
     switcher.setAttribute('aria-label', lang === 'es' ? 'Cambiar a inglés' : 'Switch to Spanish');
   }
 
