@@ -4,15 +4,37 @@ const translations = {
     nav: {
       home: "Inicio",
       about: "Sobre Mí",
-      skills: "Habilidades",
+      experience: "Experiencia",
+      skills: "Tecnologías",
       projects: "Proyectos",
       contact: "Contacto"
     },
 
     about:{
       title: "Sobre Mí",
-      description: "<p>Soy un Ingeniero de Sistemas enfocado en el desarrollo web y el análisis de datos. Me gusta crear aplicaciones y soluciones efectivas que resuelvan problemas cotidianos en el mundo laboral.</p><p>Mis habilidades se centran en el desarrollo vanilla (<span class=\"tech-highlight tech-html\">HTML</span>, <span class=\"tech-highlight tech-css\">CSS</span>, <span class=\"tech-highlight tech-js\">JavaScript</span> y múltiples librerías) para lograr interfaces mas fluidas y responsivas que otras personas puedan comprender facilmente, complementándome con frameworks como <span class=\"tech-highlight tech-react\">React</span> y <span class=\"tech-highlight tech-next\">Next.js</span>.</p><p>Para el análisis de datos me gusta trabajar con <span class=\"tech-highlight tech-python\">Python</span> y su ecosistema de librerías como <span class=\"tech-highlight tech-pandas\">Pandas</span>, <span class=\"tech-highlight tech-numpy\">NumPy</span>, <span class=\"tech-highlight tech-matplotlib\">Matplotlib</span> y <span class=\"tech-highlight tech-duckdb\">DuckDB</span>. En bases de datos trabajo con <span class=\"tech-highlight tech-postgres\">PostgreSQL</span> y <span class=\"tech-highlight tech-mysql\">MySQL</span> (especializándome en este último).</p>"
+      description: "<p>Desarrollo sistemas web para organizar procesos de trabajo y convertir datos en información útil. Actualmente realizo mis residencias profesionales y cuento con experiencia en proyectos de soporte técnico, gestión y análisis de datos.</p><p>Trabajo con JavaScript, PHP, MySQL y Python, además de herramientas como React y Next.js. También utilizo herramientas de IA como apoyo en mi trabajo de desarrollo.</p>"
     },
+    experience: {
+  "title": "Experiencia",
+  "residency": {
+    "label": "Actualidad",
+    "title": "Residencias profesionales",
+    "role": "Desarrollo de sistemas web",
+    "description": "Actualmente realizo mis residencias profesionales y cuento con experiencia en el desarrollo de diversos sistemas web."
+  },
+  "minimal": {
+    "label": "Startup",
+    "title": "MINIMAL CODE",
+    "role": "Sistema de soportes técnicos",
+    "description": "Desarrollo de un sistema web para gestionar solicitudes de soporte técnico de diferentes empresas, utilizando JavaScript vanilla, PHP y MySQL."
+  },
+  "entomology": {
+    "label": "Colaboración institucional",
+    "title": "ITESI · Universidad de Guanajuato",
+    "role": "Sistema de Entomología",
+    "description": "Desarrollo de un sistema de gestión de colecciones entomológicas en el marco del convenio entre ITESI y la UG, con guías de uso en sus módulos."
+  }
+},
     welcome: {
       status_badge: "Disponible para nuevos proyectos",
       title: "FULLSTACK DEVELOPER",
@@ -28,13 +50,15 @@ const translations = {
       download_cv: "Descargar CV"
     },
     skills: {
+      title: "Tecnologías",
       static_prefix: "Trabajo con",
       specialized_prefix: "Especializado en",
       default_hover: "estas herramientas",
       disclaimer: "Pero siempre puedo adaptarme a nuevas tecnologías.",
       frontend: "Frontend & Web",
       backend: "Backend",
-      databases: "Datos",
+      databases: "Bases de datos",
+      analysis: "Análisis de datos",
       tools: "Herramientas & DevOps"
     },
     projects: {
@@ -71,15 +95,37 @@ const translations = {
     nav: {
       home: "Home",
       about: "About Me",
-      skills: "Skills",
+      experience: "Experience",
+      skills: "Technologies",
       projects: "Projects",
       contact: "Contact"
     },
 
     about:{
       title: "About Me",
-      description: "<p>I am a Systems Engineer focused on web development and data analysis. I like creating effective applications and solutions that solve everyday problems in the workplace.</p><p>My skills are centered on vanilla development (<span class=\"tech-highlight tech-html\">HTML</span>, <span class=\"tech-highlight tech-css\">CSS</span>, <span class=\"tech-highlight tech-js\">JavaScript</span> and multiple libraries) to achieve more fluid and responsive interfaces that others can easily understand, complemented by frameworks like <span class=\"tech-highlight tech-react\">React</span> and <span class=\"tech-highlight tech-next\">Next.js</span>.</p><p>For data analysis, I like working with <span class=\"tech-highlight tech-python\">Python</span> and its ecosystem of libraries such as <span class=\"tech-highlight tech-pandas\">Pandas</span>, <span class=\"tech-highlight tech-numpy\">NumPy</span>, <span class=\"tech-highlight tech-matplotlib\">Matplotlib</span> and <span class=\"tech-highlight tech-duckdb\">DuckDB</span>. In databases, I work with <span class=\"tech-highlight tech-postgres\">PostgreSQL</span> and <span class=\"tech-highlight tech-mysql\">MySQL</span> (specializing in the latter).</p>"
+      description: "<p>I develop web systems to organize workflows and turn data into useful information. I am currently completing my professional residency and have experience with technical support, management and data analysis projects.</p><p>I work with JavaScript, PHP, MySQL and Python, as well as tools such as React and Next.js. I also use AI tools to support my development work.</p>"
     },
+    experience: {
+  "title": "Experience",
+  "residency": {
+    "label": "Current",
+    "title": "Professional residency",
+    "role": "Web systems development",
+    "description": "I am currently completing my professional residency and have experience developing various web systems."
+  },
+  "minimal": {
+    "label": "Startup",
+    "title": "MINIMAL CODE",
+    "role": "Technical support system",
+    "description": "Development of a web system to manage technical support requests for different companies using vanilla JavaScript, PHP and MySQL."
+  },
+  "entomology": {
+    "label": "Institutional collaboration",
+    "title": "ITESI · University of Guanajuato",
+    "role": "Entomology System",
+    "description": "Development of an entomological collection management system under the collaboration agreement between ITESI and UG, with user guides throughout its modules."
+  }
+},
     welcome: {
       status_badge: "Available for new projects",
       title: "FULLSTACK DEVELOPER",
@@ -95,13 +141,15 @@ const translations = {
       download_cv: "Download CV"
     },
     skills: {
+      title: "Technologies",
       static_prefix: "Work with",
       specialized_prefix: "Specialized in",
       default_hover: "these tools",
       disclaimer: "But I can always adapt to new technologies.",
       frontend: "Frontend & Web",
       backend: "Backend",
-      databases: "Data",
+      databases: "Databases",
+      analysis: "Data analysis",
       tools: "Tools & DevOps"
     },
     projects: {
@@ -137,14 +185,12 @@ const translations = {
 };
 
 let currentLang = 'es';
-let currentHoveredSkill = null;
 
 // Initialize on DOM Loaded
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initNavbar();
   initLanguageSwitcher();
-  initSkillsHover();
   applyLanguage(currentLang);
   initInteractiveGrid();
   initAnimations();
@@ -220,11 +266,7 @@ function applyLanguage(lang) {
     const value = getNestedValue(t, keyPath);
     if (value !== undefined) {
       if (el.classList.contains('hero-title')) {
-        const words = value.split(' ');
-        el.innerHTML = words.map(word => {
-          const charSpans = word.split('').map(char => `<span class="hero-char" style="opacity: 1;">${char}</span>`).join('');
-          return `<span class="hero-word">${charSpans}</span>`;
-        }).join(' ');
+        el.textContent = value;
       } else if (el.classList.contains('carousel-desc') || el.classList.contains('carousel-title')) {
         el.setAttribute('data-full-text', value);
         if (el.closest('.project-info-slide.active')) {
@@ -239,21 +281,7 @@ function applyLanguage(lang) {
     }
   });
 
-  // Update skill header
-  const highlightEl = document.getElementById('highlightTech');
-  const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
-  if (highlightEl) {
-    highlightEl.textContent = currentHoveredSkill || t.skills.default_hover;
-  }
-  if (staticPrefixEl) {
-    if (currentHoveredSkill) {
-      const activeCard = document.querySelector(`.modern-skill-card[data-skill="${currentHoveredSkill}"]`);
-      const isSpec = activeCard?.getAttribute('data-specialized') === 'true';
-      staticPrefixEl.textContent = isSpec ? t.skills.specialized_prefix : t.skills.static_prefix;
-    } else {
-      staticPrefixEl.textContent = t.skills.static_prefix;
-    }
-  }
+
 }
 
 function getNestedValue(obj, path) {
@@ -274,7 +302,7 @@ function initLanguageSwitcher() {
 function initNavbar() {
   const navbar = document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.navbar-link');
-  const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+  const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
   const sectionElements = sections.map(id => document.getElementById(id)).filter(Boolean);
 
   let isScrollTicking = false;
@@ -340,64 +368,6 @@ function initNavbar() {
       }
     });
   });
-}
-
-// 3. Skills Hover Tracker (Seamless Continuous Tracking)
-function initSkillsHover() {
-  const highlightEl = document.getElementById('highlightTech');
-  if (!highlightEl) return;
-
-  const cards = document.querySelectorAll('.modern-skill-card');
-  const skillsContainer = document.querySelector('.skills-container');
-  let resetTimeout = null;
-
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      if (resetTimeout) {
-        clearTimeout(resetTimeout);
-        resetTimeout = null;
-      }
-
-      const skillName = card.getAttribute('data-skill') || null;
-      const isSpecialized = card.getAttribute('data-specialized') === 'true';
-      const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
-      
-      currentHoveredSkill = skillName;
-      const t = translations[currentLang].skills;
-      if (skillName) {
-        highlightEl.textContent = skillName;
-        if (staticPrefixEl) {
-          staticPrefixEl.textContent = isSpecialized ? (t.specialized_prefix || "Especializado en") : t.static_prefix;
-        }
-      }
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (resetTimeout) clearTimeout(resetTimeout);
-      resetTimeout = setTimeout(() => {
-        currentHoveredSkill = null;
-        const t = translations[currentLang].skills;
-        highlightEl.textContent = t.default_hover;
-        const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
-        if (staticPrefixEl) {
-          staticPrefixEl.textContent = t.static_prefix;
-        }
-      }, 100);
-    });
-  });
-
-  if (skillsContainer) {
-    skillsContainer.addEventListener('mouseleave', () => {
-      if (resetTimeout) clearTimeout(resetTimeout);
-      currentHoveredSkill = null;
-      const t = translations[currentLang].skills;
-      highlightEl.textContent = t.default_hover;
-      const staticPrefixEl = document.querySelector('[data-i18n="skills.static_prefix"]');
-      if (staticPrefixEl) {
-        staticPrefixEl.textContent = t.static_prefix;
-      }
-    });
-  }
 }
 
 // 4. Interactive Grid Logic (Fluid LERP Inertial Physics)
@@ -479,96 +449,23 @@ function initInteractiveGrid() {
   }, { passive: true });
 }
 
-// 5. Antigravity Animations (Anime.js + GSAP)
+// Subtle section entrances; text is readable immediately.
 function initAnimations() {
-  // Register ScrollTrigger
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Section reveal and exit animations (accurately bounded to full section visibility)
-    const sections = document.querySelectorAll('section');
-    sections.forEach(sec => {
-      if (sec.id === 'home') return;
-      const targetChild = sec.firstElementChild || sec;
-      gsap.fromTo(targetChild, 
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1, 
-          y: 0,
-          duration: 0.75,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sec,
-            start: "top 88%",
-            end: "bottom top",
-            toggleActions: "play reverse play reverse",
-            fastScrollEnd: true
-          }
-        }
-      );
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('section:not(#home)').forEach(section => {
+    gsap.from(section.firstElementChild || section, {
+      y: 16,
+      duration: 0.4,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: section, start: 'top 92%', once: true }
     });
-
-    // Refresh ScrollTrigger to compute exact coordinates after layout & assets settle
-    ScrollTrigger.refresh();
-    window.addEventListener('load', () => {
-      ScrollTrigger.refresh();
-    });
-  }
-
-  // Initial Load Animations (Typing effect + Anime.js stagger)
-  if (typeof anime !== 'undefined') {
-    const heroBrand = document.querySelector('.hero-brand');
-    const heroActions = document.querySelector('.hero-actions');
-    
-    // Hide elements initially
-    if (heroBrand) heroBrand.style.opacity = '0';
-    if (heroActions) heroActions.style.opacity = '0';
-
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-      const text = heroTitle.textContent.trim();
-      const words = text.split(' ');
-      heroTitle.innerHTML = words.map(word => {
-        const charSpans = word.split('').map(char => `<span class="hero-char" style="opacity: 0;">${char}</span>`).join('');
-        return `<span class="hero-word">${charSpans}</span>`;
-      }).join(' ');
-      heroTitle.style.opacity = '1';
-
-      const allChars = heroTitle.querySelectorAll('.hero-char');
-      let i = 0;
-      function type() {
-        if (i < allChars.length) {
-          allChars[i].style.opacity = '1';
-          i++;
-          setTimeout(type, 30); // 30ms per character
-        } else {
-          // Play the rest of the animations once typing finishes
-          if (typeof anime !== 'undefined') {
-            anime.timeline({loop: false})
-              .add({
-                targets: '.hero-brand',
-                opacity: [0, 1],
-                translateY: [-20, 0],
-                easing: "easeOutExpo",
-                duration: 800
-              })
-              .add({
-                targets: '.hero-actions',
-                opacity: [0, 1],
-                translateY: [20, 0],
-                easing: "easeOutExpo",
-                duration: 800
-              }, '-=400');
-          }
-        }
-      }
-      // Small delay before typing starts
-      setTimeout(type, 300);
-    }
-  }
+  });
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 }
 
-// 6. Projects Carousel Logic (Static text container, image-only slide track, typewriter effect for title and description)
+// 6. Projects Carousel Logic (Static text container, image-only slide track, immediately visible text)
 function initProjectsCarousel() {
   const visualTrack = document.getElementById('projectsVisualTrack');
   const prevBtn = document.getElementById('projectPrevBtn');
@@ -580,8 +477,6 @@ function initProjectsCarousel() {
 
   let currentProjectIndex = 0;
   const totalProjects = visualSlides.length;
-  let typingTimeout = null;
-  let erasingTimeout = null;
   let isTransitioning = false;
 
   // Store initial target full text for each title and description
@@ -597,9 +492,6 @@ function initProjectsCarousel() {
   });
 
   function switchProject(targetIndex) {
-    if (typingTimeout) clearTimeout(typingTimeout);
-    if (erasingTimeout) clearTimeout(erasingTimeout);
-
     const newIndex = (targetIndex + totalProjects) % totalProjects;
     currentProjectIndex = newIndex;
 

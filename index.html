@@ -38,14 +38,20 @@
             </button>
           </li>
           <li>
-            <button class="navbar-link" data-section="skills" data-scroll-to="skills">
-              <span data-i18n="nav.skills">Habilidades</span>
+            <button class="navbar-link" data-section="experience" data-scroll-to="experience">
+              <span data-i18n="nav.experience">Experiencia</span>
               <span class="navbar-indicator"></span>
             </button>
           </li>
           <li>
             <button class="navbar-link" data-section="projects" data-scroll-to="projects">
               <span data-i18n="nav.projects">Proyectos</span>
+              <span class="navbar-indicator"></span>
+            </button>
+          </li>
+          <li>
+            <button class="navbar-link" data-section="skills" data-scroll-to="skills">
+              <span data-i18n="nav.skills">Habilidades</span>
               <span class="navbar-indicator"></span>
             </button>
           </li>
@@ -110,7 +116,7 @@
 
             <!-- Huge Central Text (Description) -->
             <h1 class="hero-title" data-i18n="welcome.about_text_1">
-              Desarrollador Fullstack y Analista de Datos.
+              Desarrollador Fullstack y Analista de Datos
             </h1>
 
             <!-- Actions -->
@@ -142,71 +148,50 @@
 
             <div class="about-content">
               <div class="about-description" data-i18n="about.description">
-                <p>Soy un Ingeniero de Sistemas enfocado en el desarrollo web y el análisis de datos. Me apasiona crear aplicaciones y soluciones efectivas que resuelvan problemas cotidianos en el mundo laboral.</p>
-                <p>Mis habilidades se centran en el desarrollo vanilla (<span class="tech-highlight tech-html">HTML</span>, <span class="tech-highlight tech-css">CSS</span>, <span class="tech-highlight tech-js">JavaScript</span> y múltiples librerías), complementándome con frameworks modernos como <span class="tech-highlight tech-react">React</span> y <span class="tech-highlight tech-next">Next.js</span>.</p>
-                <p>Para el análisis de datos me gusta trabajar con <span class="tech-highlight tech-python">Python</span> y su ecosistema de librerías como <span class="tech-highlight tech-pandas">Pandas</span>, <span class="tech-highlight tech-numpy">NumPy</span>, <span class="tech-highlight tech-matplotlib">Matplotlib</span> y <span class="tech-highlight tech-duckdb">DuckDB</span>. En bases de datos trabajo con <span class="tech-highlight tech-postgres">PostgreSQL</span> y <span class="tech-highlight tech-mysql">MySQL</span> (especializándome en este último).</p>
+                <p>Desarrollo sistemas web para organizar procesos de trabajo y convertir datos en información útil. Actualmente realizo mis residencias profesionales y cuento con experiencia en proyectos de soporte técnico, gestión y análisis de datos.</p><p>Trabajo con JavaScript, PHP, MySQL y Python, además de herramientas como React y Next.js. También utilizo herramientas de IA como apoyo en mi trabajo de desarrollo.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SKILLS SECTION -->
-        <section id="skills">
-          <div class="skills-section">
-            <div class="skills-header">
-              <h1 class="skills-title">
-                <span class="static-prefix" data-i18n="skills.static_prefix">Trabajo con</span>
-                <span id="highlightTech" class="highlight-tech">estas herramientas</span>
-              </h1>
+        <section id="experience" aria-labelledby="experience-title">
+          <div class="experience-section-wrapper">
+            <div class="section-header">
+              <h2 id="experience-title" class="section-title" data-i18n="experience.title">Experiencia</h2>
+              <div class="section-line"></div>
             </div>
-
-            <div class="skills-container">
-              <!-- Frontend Row -->
-              <div class="skill-category-row">
-                <h3 class="category-title" data-i18n="skills.frontend">Frontend & Web</h3>
-                <div class="skills-grid">
-                  <div class="modern-skill-card" data-skill="HTML5"><div class="skill-logo-wrapper"><img src="./public/html5.svg" alt="HTML5" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="CSS3"><div class="skill-logo-wrapper"><img src="./public/css.svg" alt="CSS3" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card specialized-skill" data-skill="JavaScript" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/javascript.svg" alt="JavaScript" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="TypeScript"><div class="skill-logo-wrapper"><img src="./public/typescript.svg" alt="TypeScript" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="React"><div class="skill-logo-wrapper"><img src="./public/react_light.svg" alt="React" class="skill-logo" data-theme-svg="react" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="Next.js"><div class="skill-logo-wrapper"><img src="./public/nextjs_icon_dark.svg" alt="Next.js" class="skill-logo" data-theme-svg="nextjs" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="Bootstrap"><div class="skill-logo-wrapper"><img src="./public/bootstrap.svg" alt="Bootstrap" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="Vite"><div class="skill-logo-wrapper"><img src="./public/vite.svg" alt="Vite" class="skill-logo" loading="lazy" decoding="async"></div></div>
+            <div class="experience-list">
+              <article class="experience-card">
+                <div class="experience-context">
+                  <span class="experience-label" data-i18n="experience.residency.label">Actualidad</span>
+                  <h3 data-i18n="experience.residency.title">Residencias profesionales</h3>
                 </div>
-              </div>
-
-              <!-- Backend Row -->
-              <div class="skill-category-row">
-                <h3 class="category-title" data-i18n="skills.backend">Backend</h3>
-                <div class="skills-grid">
-                  <div class="modern-skill-card" data-skill="Node.js"><div class="skill-logo-wrapper"><img src="./public/nodejs.svg" alt="Node.js" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" data-theme-svg="php" loading="lazy" decoding="async"></div></div>
+                <div class="experience-details">
+                  <h4 data-i18n="experience.residency.role">Desarrollo de sistema web Bi gerencial</h4>
+                  <p data-i18n="experience.residency.description">Desarrolle un motor de BI en base a archivos de excel para el área gerencial de la empresa Hernie Transportes, en la cual se cargaban los archivos, se procesaban, limpiaban y mostraban dashboards dinamicos de forma automatizada.</p>
                 </div>
-              </div>
-
-              <!-- Databases Row -->
-              <div class="skill-category-row">
-                <h3 class="category-title" data-i18n="skills.databases">Bases de Datos</h3>
-                <div class="skills-grid">
-                  <div class="modern-skill-card specialized-skill" data-skill="Python" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/python.svg" alt="Python" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card specialized-skill" data-skill="MySQL" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/mysql-icon-light.svg" alt="MySQL" class="skill-logo" data-theme-svg="mysql" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="PostgreSQL"><div class="skill-logo-wrapper"><img src="./public/postgresql.svg" alt="PostgreSQL" class="skill-logo" loading="lazy" decoding="async"></div></div>
+              </article>
+              <article class="experience-card">
+                <div class="experience-context">
+                  <span class="experience-label" data-i18n="experience.minimal.label">Startup</span>
+                  <h3 data-i18n="experience.minimal.title">MINIMAL CODE</h3>
                 </div>
-              </div>
-
-              <!-- Tools Row -->
-              <div class="skill-category-row">
-                <h3 class="category-title" data-i18n="skills.tools">Herramientas & DevOps</h3>
-                <div class="skills-grid">
-                  <div class="modern-skill-card" data-skill="Docker"><div class="skill-logo-wrapper"><img src="./public/docker.svg" alt="Docker" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="Linux"><div class="skill-logo-wrapper"><img src="./public/linux.svg" alt="Linux" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="Git"><div class="skill-logo-wrapper"><img src="./public/git.svg" alt="Git" class="skill-logo" loading="lazy" decoding="async"></div></div>
-                  <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" data-theme-svg="github" loading="lazy" decoding="async"></div></div>
+                <div class="experience-details">
+                  <h4 data-i18n="experience.minimal.role">Multiples sistemas web para diferentes clientes</h4>
+                  <p data-i18n="experience.minimal.description">Destacando el desarrollo de un sistema web para gestionar solicitudes de soporte técnico de diferentes empresas, utilizando JavaScript vanilla, PHP y MySQL. Desarrollo de sistema web y fisico para la automatización de escaneo de boletos y apertura de reguiletes, por medio de escaner, ESP32,etc.</p>
                 </div>
-              </div>
+              </article>
+              <article class="experience-card">
+                <div class="experience-context">
+                  <span class="experience-label" data-i18n="experience.entomology.label">Colaboración institucional</span>
+                  <h3 data-i18n="experience.entomology.title">ITESI · Universidad de Guanajuato</h3>
+                </div>
+                <div class="experience-details">
+                  <h4 data-i18n="experience.entomology.role">Sistema de Entomología</h4>
+                  <p data-i18n="experience.entomology.description">Desarrollo de un sistema de gestión de colecciones entomológicas en el marco del convenio entre ITESI y la UG, con guías de uso en sus módulos.</p>
+                </div>
+              </article>
             </div>
-
           </div>
         </section>
 
@@ -381,6 +366,74 @@
           </div>
         </section>
 
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+          <div class="skills-section">
+            <div class="section-header">
+              <h2 class="section-title" data-i18n="skills.title">Tecnologías</h2>
+              <div class="section-line"></div>
+            </div>
+
+            <div class="skills-container">
+              <!-- Frontend Row -->
+              <div class="skill-category-row">
+                <h3 class="category-title" data-i18n="skills.frontend">Frontend & Web</h3>
+                <div class="skills-grid">
+                  <div class="modern-skill-card" data-skill="HTML5"><div class="skill-logo-wrapper"><img src="./public/html5.svg" alt="HTML5" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">HTML5</span></div>
+                  <div class="modern-skill-card" data-skill="CSS3"><div class="skill-logo-wrapper"><img src="./public/css.svg" alt="CSS3" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">CSS3</span></div>
+                  <div class="modern-skill-card specialized-skill" data-skill="JavaScript" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/javascript.svg" alt="JavaScript" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">JavaScript</span></div>
+                  <div class="modern-skill-card" data-skill="TypeScript"><div class="skill-logo-wrapper"><img src="./public/typescript.svg" alt="TypeScript" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">TypeScript</span></div>
+                  <div class="modern-skill-card" data-skill="React"><div class="skill-logo-wrapper"><img src="./public/react_light.svg" alt="React" class="skill-logo" data-theme-svg="react" loading="lazy" decoding="async"></div><span class="skill-name">React</span></div>
+                  <div class="modern-skill-card" data-skill="Next.js"><div class="skill-logo-wrapper"><img src="./public/nextjs_icon_dark.svg" alt="Next.js" class="skill-logo" data-theme-svg="nextjs" loading="lazy" decoding="async"></div><span class="skill-name">Next.js</span></div>
+                  <div class="modern-skill-card" data-skill="Bootstrap"><div class="skill-logo-wrapper"><img src="./public/bootstrap.svg" alt="Bootstrap" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Bootstrap</span></div>
+                  <div class="modern-skill-card" data-skill="Vite"><div class="skill-logo-wrapper"><img src="./public/vite.svg" alt="Vite" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Vite</span></div>
+                </div>
+              </div>
+
+              <!-- Backend Row -->
+              <div class="skill-category-row">
+                <h3 class="category-title" data-i18n="skills.backend">Backend</h3>
+                <div class="skills-grid">
+                  <div class="modern-skill-card" data-skill="Node.js"><div class="skill-logo-wrapper"><img src="./public/nodejs.svg" alt="Node.js" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Node.js</span></div>
+                  <div class="modern-skill-card" data-skill="PHP"><div class="skill-logo-wrapper"><img src="./public/php.svg" alt="PHP" class="skill-logo" data-theme-svg="php" loading="lazy" decoding="async"></div><span class="skill-name">PHP</span></div>
+                </div>
+              </div>
+
+              <!-- Databases Row -->
+              <div class="skill-category-row">
+                <h3 class="category-title" data-i18n="skills.databases">Bases de Datos</h3>
+                <div class="skills-grid">
+                  <div class="modern-skill-card specialized-skill" data-skill="MySQL" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/mysql-icon-light.svg" alt="MySQL" class="skill-logo" data-theme-svg="mysql" loading="lazy" decoding="async"></div><span class="skill-name">MySQL</span></div>
+                  <div class="modern-skill-card" data-skill="PostgreSQL"><div class="skill-logo-wrapper"><img src="./public/postgresql.svg" alt="PostgreSQL" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">PostgreSQL</span></div>
+                </div>
+              </div>
+
+              <div class="skill-category-row">
+                <h3 class="category-title" data-i18n="skills.analysis">Análisis de datos</h3>
+                <div class="skills-grid">
+                  <div class="modern-skill-card specialized-skill" data-skill="Python" data-specialized="true"><div class="skill-logo-wrapper"><img src="./public/python.svg" alt="Python" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Python</span></div>
+                  <div class="modern-skill-card" data-skill="Pandas"><span class="skill-name">Pandas</span></div>
+                  <div class="modern-skill-card" data-skill="NumPy"><span class="skill-name">NumPy</span></div>
+                  <div class="modern-skill-card" data-skill="Matplotlib"><span class="skill-name">Matplotlib</span></div>
+                  <div class="modern-skill-card" data-skill="DuckDB"><span class="skill-name">DuckDB</span></div>
+                </div>
+              </div>
+
+              <!-- Tools Row -->
+              <div class="skill-category-row">
+                <h3 class="category-title" data-i18n="skills.tools">Herramientas & DevOps</h3>
+                <div class="skills-grid">
+                  <div class="modern-skill-card" data-skill="Docker"><div class="skill-logo-wrapper"><img src="./public/docker.svg" alt="Docker" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Docker</span></div>
+                  <div class="modern-skill-card" data-skill="Linux"><div class="skill-logo-wrapper"><img src="./public/linux.svg" alt="Linux" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Linux</span></div>
+                  <div class="modern-skill-card" data-skill="Git"><div class="skill-logo-wrapper"><img src="./public/git.svg" alt="Git" class="skill-logo" loading="lazy" decoding="async"></div><span class="skill-name">Git</span></div>
+                  <div class="modern-skill-card" data-skill="GitHub"><div class="skill-logo-wrapper"><img src="./public/github_light.svg" alt="GitHub" class="skill-logo" data-theme-svg="github" loading="lazy" decoding="async"></div><span class="skill-name">GitHub</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
         <!-- CONTACT SECTION -->
         <section id="contact">
           <div class="contact-section-wrapper">
@@ -429,7 +482,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="./script.js"></script>
