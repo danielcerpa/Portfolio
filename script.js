@@ -66,6 +66,18 @@ const translations = {
       visit_site: "Visitar Sitio",
       view_repo: "GitHub",
       items: {
+        ISO9001: {
+          title: "Sistema ISO 9001",
+          description: "Sistema de gestión de calidad alineado a la norma ISO 9001:2015, con acceso por usuario y modo de demostración."
+        },
+        AuditLine: {
+          title: "Audit Line",
+          description: "Plataforma de estudio de tiempos para líneas de producción: cronometra cada elemento, aplica valoración Westinghouse y suplementos, y calcula el tiempo estándar por línea."
+        },
+        Ciment: {
+          title: "Ciment",
+          description: "Plataforma SaaS para presupuestar obras: reúne presupuestos, análisis y recursos en un mismo espacio para arquitectos, ingenieros, analistas de costos y constructoras."
+        },
         Entomologia: {
           title: "Sistema de Entomología",
           description: "Aplicacion web para la gestión de insectos en colecciones científicas, con sistemas de préstamos, administración de colecciones y más.",
@@ -77,10 +89,6 @@ const translations = {
         Lavanderia: {
           title: "Gestor de Lavanderías SaaS",
           description: "Plataforma SaaS para la administración integral de negocios de lavandería, control de pedidos en tiempo real, seguimiento de turnos, métricas financieras y gestión de clientes."
-        },
-        DataForge: {
-          title: "Data Forge",
-          description: "Aplicacion web que permite visualizar, editar y limpiar archivos .CSV y .XLSX. Además permite re-exportar los archivos en diferentes formatos."
         }
       }
     },
@@ -89,6 +97,11 @@ const translations = {
       description: "¿Tienes un proyecto en mente? Me encantaría escuchar sobre él. Siempre estoy abierto a nuevas oportunidades.",
       footer: `© ${new Date().getFullYear()} Daniel Cerpa — Ingeniero de Sistemas`,
       built_with: "Construido con HTML5, CSS3, Vanilla JS & GSAP"
+    },
+    footer: {
+      tagline: "Construyamos algo juntos",
+      navigation: "Navegación",
+      links: "Enlaces"
     }
   },
   en: {
@@ -157,6 +170,18 @@ const translations = {
       visit_site: "Visit Site",
       view_repo: "GitHub",
       items: {
+        ISO9001: {
+          title: "ISO 9001 System",
+          description: "Quality management system aligned with the ISO 9001:2015 standard, with user login and a demo mode."
+        },
+        AuditLine: {
+          title: "Audit Line",
+          description: "Time study platform for production lines: time every element, apply Westinghouse rating and allowances, and calculate the standard time per line."
+        },
+        Ciment: {
+          title: "Ciment",
+          description: "SaaS platform for construction budgeting: brings estimates, analysis and resources into one place for architects, engineers, cost analysts and builders."
+        },
         Entomologia: {
           title: "Entomology System",
           description: "Web application for the management of insects in scientific collections, with loan systems, collection management and more."
@@ -168,10 +193,6 @@ const translations = {
         Lavanderia: {
           title: "Laundry Management SaaS",
           description: "SaaS platform for comprehensive laundry business management, real-time order tracking, shift scheduling, financial metrics, and customer management."
-        },
-        DataForge: {
-          title: "Data Forge",
-          description: "Web application that allows to visualize, edit and clean .CSV and .XLSX files. It also allows to re-export the files in different formats."
         }
       }
     },
@@ -180,6 +201,11 @@ const translations = {
       description: "Have a project in mind? I'd love to hear about it. I'm always open to new opportunities.",
       footer: `© ${new Date().getFullYear()} Daniel Cerpa — Systems Engineer`,
       built_with: "Built with HTML5, CSS3, Vanilla JS & GSAP"
+    },
+    footer: {
+      tagline: "Let's build something together",
+      navigation: "Navigation",
+      links: "Links"
     }
   }
 };
@@ -192,7 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initLanguageSwitcher();
   applyLanguage(currentLang);
-  initInteractiveGrid();
   initAnimations();
   initProjectsCarousel();
   initCopyEmail();
@@ -368,85 +393,6 @@ function initNavbar() {
       }
     });
   });
-}
-
-// 4. Interactive Grid Logic (Fluid LERP Inertial Physics)
-function initInteractiveGrid() {
-  const homeSec = document.getElementById('home');
-  if (!homeSec) return;
-
-  const spotlight = homeSec.querySelector('.bg-spotlight');
-  if (!spotlight) return;
-
-  // Only enable cursor spotlight on devices with fine pointer (mouse)
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!isFinePointer) return;
-
-  let isHomeVisible = true;
-  let targetX = window.innerWidth / 2;
-  let targetY = window.innerHeight * 0.45;
-  let currentX = targetX;
-  let currentY = targetY;
-  let isLoopRunning = false;
-
-  // Set initial spotlight center position
-  spotlight.style.setProperty('--mouse-x', currentX.toFixed(2) + 'px');
-  spotlight.style.setProperty('--mouse-y', currentY.toFixed(2) + 'px');
-
-  // Disable spotlight calculations when home section is not in viewport
-  if (typeof IntersectionObserver !== 'undefined') {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        isHomeVisible = entry.isIntersecting;
-        spotlight.style.display = isHomeVisible ? 'block' : 'none';
-        if (isHomeVisible && !isLoopRunning) {
-          startLoop();
-        }
-      });
-    }, { threshold: 0 });
-    observer.observe(homeSec);
-  }
-
-  function lerp(start, end, factor) {
-    return start + (end - start) * factor;
-  }
-
-  function tick() {
-    if (!isHomeVisible) {
-      isLoopRunning = false;
-      return;
-    }
-
-    currentX = lerp(currentX, targetX, 0.12);
-    currentY = lerp(currentY, targetY, 0.12);
-
-    spotlight.style.setProperty('--mouse-x', currentX.toFixed(2) + 'px');
-    spotlight.style.setProperty('--mouse-y', currentY.toFixed(2) + 'px');
-
-    const dx = Math.abs(targetX - currentX);
-    const dy = Math.abs(targetY - currentY);
-
-    if (dx > 0.1 || dy > 0.1) {
-      requestAnimationFrame(tick);
-    } else {
-      isLoopRunning = false;
-    }
-  }
-
-  function startLoop() {
-    if (!isLoopRunning) {
-      isLoopRunning = true;
-      requestAnimationFrame(tick);
-    }
-  }
-  
-  // Track mouse movement globally when over the page while home is visible
-  window.addEventListener('mousemove', (e) => {
-    if (!isHomeVisible) return;
-    targetX = e.pageX;
-    targetY = e.pageY;
-    startLoop();
-  }, { passive: true });
 }
 
 // Subtle section entrances; text is readable immediately.
