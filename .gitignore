@@ -8,6 +8,12 @@ pnpm-debug.log*
 lerna-debug.log*
 .agent
 
+# Local tooling and design references (not part of the site)
+.claude
+antigravity-design
+notion-design
+github-profile
+
 
 node_modules
 dist
