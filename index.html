@@ -20,6 +20,13 @@
       <span class="breadcrumb-sep">/</span>
       <span data-i18n="title">Portfolio</span>
     </div>
+    <nav class="topbar-nav">
+      <a href="#home" data-i18n="nav.home">Inicio</a>
+      <a href="#skills" data-i18n="skills.title">Tecnologías</a>
+      <a href="#experience" data-i18n="experience.title">Experiencia</a>
+      <a href="#projects" data-i18n="projects.title">Proyectos</a>
+      <a href="#contact" data-i18n="nav.contact">Contacto</a>
+    </nav>
     <div class="topbar-controls">
       <button id="langSwitcher" class="topbar-btn" aria-label="Switch to English">EN</button>
       <button id="themeToggleBtn" class="topbar-btn" aria-label="Cambiar tema">
@@ -31,7 +38,7 @@
 
   <main class="page">
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="home">
       <div class="hero-text">
         <h1 class="page-title">Daniel Cerpa</h1>
         <p class="page-subtitle" data-i18n-html="hero.role">Desarrollador <span class="role-pill">Fullstack</span> y Analista de Datos</p>
@@ -48,7 +55,7 @@
     </section>
 
     <!-- SKILLS -->
-    <section>
+    <section id="skills">
       <div class="section-head">
         <h2 class="section-title" data-i18n="skills.title">Tecnologías</h2>
         <div class="tabs" role="tablist" data-target="skillsGallery">
@@ -74,10 +81,10 @@
         <div class="skill" data-tags="db"><img src="./public/mariadb.svg" alt="">MariaDB</div>
         <div class="skill" data-tags="other"><img src="./public/postgresql.svg" alt="">PostgreSQL</div>
         <div class="skill" data-tags="data"><img src="./public/python.svg" alt="">Python</div>
-        <div class="skill" data-tags="data">Pandas</div>
-        <div class="skill" data-tags="data">NumPy</div>
-        <div class="skill" data-tags="data">Matplotlib</div>
-        <div class="skill" data-tags="data">DuckDB</div>
+        <div class="skill" data-tags="data"><img src="./public/pandas_dark.svg" alt="" data-theme-svg="pandas">Pandas</div>
+        <div class="skill" data-tags="data"><img src="./public/numpy.svg" alt="">NumPy</div>
+        <div class="skill" data-tags="data"><img src="./public/matplotlib.svg" alt="">Matplotlib</div>
+        <div class="skill" data-tags="data"><img src="./public/duckdb.svg" alt="">DuckDB</div>
         <div class="skill" data-tags="tools"><img src="./public/docker.svg" alt="">Docker</div>
         <div class="skill" data-tags="tools"><img src="./public/linux.svg" alt="">Linux</div>
         <div class="skill" data-tags="tools"><img src="./public/git.svg" alt="">Git</div>
@@ -86,7 +93,7 @@
     </section>
 
     <!-- EXPERIENCE (Notion toggles) -->
-    <section>
+    <section id="experience">
       <h2 class="section-title" data-i18n="experience.title">Experiencia</h2>
       <details class="toggle" open>
         <summary><span data-i18n="experience.residency.title">Residencias profesionales</span><span class="tag" data-i18n="experience.residency.label">Concluidas</span></summary>
@@ -103,7 +110,7 @@
     </section>
 
     <!-- PROJECTS (Notion gallery) -->
-    <section>
+    <section id="projects">
       <div class="section-head">
         <h2 class="section-title" data-i18n="projects.title">Proyectos</h2>
         <div class="tabs" role="tablist" data-target="projectsGallery">

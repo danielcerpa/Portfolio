@@ -2,6 +2,7 @@
 const translations = {
   es: {
     title: "Portfolio",
+    nav: { home: "Inicio", contact: "Contacto" },
     hero: {
       role: "Desarrollador <span class=\"role-pill\">Fullstack</span> y Analista de Datos",
       contact: "Contactar",
@@ -69,6 +70,7 @@ const translations = {
   },
   en: {
     title: "Portfolio",
+    nav: { home: "Home", contact: "Contact" },
     hero: {
       role: "<span class=\"role-pill\">Fullstack</span> Developer and Data Analyst",
       contact: "Get in touch",
@@ -144,7 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLanguage(currentLang);
   initTabs();
   initCopyEmail();
+  initNavSpy();
 });
+
+// Highlight the topbar link of the last section whose top passed the upper third;
+// at the page bottom the last section wins since short sections never reach that line
+function initNavSpy() {
+  const links = document.querySelectorAll('.topbar-nav a');
+  const sections = [...document.querySelectorAll('main section')];
+  const update = () => {
+    let current = sections.filter(s => s.getBoundingClientRect().top <= innerHeight / 3).pop();
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) current = sections.at(-1);
+    links.forEach(a => a.toggleAttribute('aria-current', !!current?.id && a.hash === `#${current.id}`));
+  };
+  addEventListener('scroll', update, { passive: true });
+  update();
+}
 
 // Theme: stored choice, otherwise follow the OS
 // localStorage can throw (private mode, blocked storage), so the theme just won't persist there
@@ -160,7 +177,8 @@ const themeSvgs = {
   github: ['./public/github_dark.svg', './public/github_light.svg'],
   react: ['./public/react_dark.svg', './public/react_light.svg'],
   mysql: ['./public/mysql-icon-dark.svg', './public/mysql-icon-light.svg'],
-  php: ['./public/php_dark.svg', './public/php.svg']
+  php: ['./public/php_dark.svg', './public/php.svg'],
+  pandas: ['./public/pandas_dark.svg', './public/pandas.svg']
 };
 
 function applyTheme(theme) {
